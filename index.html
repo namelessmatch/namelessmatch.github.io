@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,117 +10,114 @@
       background: #fff;
       font-family: "Segoe UI", sans-serif;
       color: #333;
+      padding: 2em 1em;
+      margin: 0;
       text-align: center;
-      padding: 2em;
-      line-height: 1.6;
     }
-    img {
-      width: 120px;
+    img.logo {
+      width: 100px;
       height: auto;
       margin-bottom: 1em;
     }
     h1 {
-      font-size: 2em;
+      font-size: 1.8em;
       margin-bottom: 0.3em;
     }
-    h2 {
-      margin-top: 2em;
-      font-size: 1.4em;
-    }
     .section {
-      margin-top: 2.5em;
+      margin-top: 3em;
+    }
+    .button-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.7em;
+      margin-top: 1em;
     }
     .button {
-      display: inline-block;
-      width: 90%;
-      max-width: 360px;
-      padding: 1em;
-      margin: 0.4em auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45%;
+      min-width: 140px;
+      padding: 0.8em;
       border-radius: 10px;
       color: white;
       text-decoration: none;
-      font-size: 1em;
+      font-size: 0.95em;
       transition: background 0.3s ease;
     }
-    .nameless {
-      background-color: #E6A06E;
+    .button img.icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      vertical-align: middle;
     }
-    .nameless:hover {
-      background-color: #f3b184;
+    .nameless { background-color: #E6A06E; }
+    .nameless:hover { background-color: #f3b184; }
+    .kasu { background-color: #659CCF; }
+    .kasu:hover { background-color: #7fb0db; }
+    .report { background-color: #976AC4; }
+    .report:hover { background-color: #a986d1; }
+
+    @media screen and (max-width: 600px) {
+      .button {
+        width: 90%;
+      }
     }
-    .kasu {
-      background-color: #659CCF;
-    }
-    .kasu:hover {
-      background-color: #7fb0db;
-    }
-    .report {
-      background-color: #976AC4;
-    }
-    .report:hover {
-      background-color: #a986d1;
-    }
+
     .note {
-      font-size: 0.9em;
+      font-size: 0.85em;
       color: #666;
       margin-top: 3em;
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
-  <img src="hakase.png" alt="ロゴ">
+  <img src="hakase.png" alt="ロゴ" class="logo">
   <h1>#名無しマッチ 公式リンク</h1>
 
-  <p>学校も、子育ても、創作も──答えがひとつじゃない時代。</p>
-  <p>元教員＆教育委員会での経験をベースに、先生・保護者・子どもたち、みんなの「学びのヒント」を届けています。</p>
-  <p>発信内容は、note・ブログ・SNS・LINEスタンプ・創作など多岐にわたりますが、テーマはひとつ。</p>
-  <p>「視界が開ける瞬間」を、一緒に作ること。LINEで質問すると、関連コンテンツを紹介するAIも開発しています。</p>
+  <p>教育・子育て・創作・AI活用──全部を“実験”としてつなぐ、横断型プロジェクトです。</p>
+  <p>note・動画・LINE・ブログなど、多岐にわたる発信を「名無しマッチ／燃えかすマッチ／記録アカ」の3軸で運営しています。</p>
+  <p>どのアカウントも中の人は同じで、目的は「視界が開ける瞬間を届けること」。</p>
 
   <div class="section">
     <h2>📘 本アカ：名無しマッチ</h2>
-    <a href="https://lin.ee/7teX4nMG" class="button nameless">LINEコンテンツサポート</a>
-    <a href="https://x.com/namelessmatch" class="button nameless">X（Twitter）</a>
-    <a href="https://instagram.com/nameless.match" class="button nameless">Instagram</a>
-    <a href="https://note.com/nameless_match" class="button nameless">note</a>
-    <a href="https://www.tiktok.com/@nameless.match" class="button nameless">TikTok</a>
-    <a href="https://www.youtube.com/@kasu_report" class="button nameless">YouTubeショート</a>
-    <a href="mailto:yourmail@example.com" class="button nameless">お問い合わせ（メール）</a>
-    <a href="https://tales.note.com/nameless_match/wsep9giecmyyn" class="button nameless">新作小説（トリガー）</a>
-    <a href="#" class="button nameless">LINEスタンプ</a>
-    <a href="#" class="button nameless">１０秒アンケート</a>
+    <div class="button-grid">
+      <a href="https://lin.ee/7teX4nMG" class="button nameless"><img src="line.png" class="icon">LINEサポート</a>
+      <a href="https://x.com/namelessmatch" class="button nameless"><img src="x.png" class="icon">X</a>
+      <a href="https://instagram.com/nameless.match" class="button nameless"><img src="insta.png" class="icon">Instagram</a>
+      <a href="https://note.com/nameless_match" class="button nameless"><img src="note.png" class="icon">note</a>
+      <a href="https://www.tiktok.com/@nameless.match" class="button nameless"><img src="tiktok.png" class="icon">TikTok</a>
+      <a href="https://www.youtube.com/@kasu_report" class="button nameless"><img src="yt.png" class="icon">YouTube</a>
+      <a href="mailto:yourmail@example.com" class="button nameless"><img src="mail.png" class="icon">メール</a>
+      <a href="details_nameless.html" class="button nameless"><img src="more.png" class="icon">その他の活動</a>
+    </div>
   </div>
 
   <div class="section">
     <h2>🔥 裏アカ：燃えかすマッチ</h2>
-    <a href="https://x.com/match_kasu" class="button kasu">裏X</a>
-    <a href="https://match-kasu.hateblo.jp" class="button kasu">裏ブログ（雑念）</a>
-    <a href="https://instagram.com/match_kasu" class="button kasu">Instagram（快適グッズ）</a>
-    <a href="https://note.com/match_kasu" class="button kasu">note（AI関連）</a>
-    <a href="#" class="button kasu">小説：くすぶる校長室</a>
-    <a href="#" class="button kasu">ラブコメ小説：レンブランサ</a>
-    <a href="#" class="button kasu">家庭用脱毛レビュー</a>
-    <a href="#" class="button kasu">プログラミング勉強記録</a>
+    <div class="button-grid">
+      <a href="https://x.com/match_kasu" class="button kasu"><img src="x.png" class="icon">裏X</a>
+      <a href="https://match-kasu.hateblo.jp" class="button kasu"><img src="blog.png" class="icon">裏ブログ</a>
+      <a href="https://instagram.com/match_kasu" class="button kasu"><img src="insta.png" class="icon">Instagram</a>
+      <a href="https://note.com/match_kasu" class="button kasu"><img src="note.png" class="icon">note</a>
+      <a href="details_kasu.html" class="button kasu"><img src="more.png" class="icon">その他の活動</a>
+    </div>
   </div>
 
   <div class="section">
     <h2>📈 記録アカ：副業記録</h2>
-    <a href="https://x.com/kasu_report" class="button report">X（記録置き場）</a>
-    <a href="https://note.com/kasu_report" class="button report">note（副業ノウハウ）</a>
-    <a href="https://instagram.com/kasu_report" class="button report">Instagram</a>
-    <a href="#" class="button report">30秒でわかる雑学シリーズ</a>
-    <a href="#" class="button report">ランドセルの色の理由</a>
-    <a href="#" class="button report">学校チャイムの雑学</a>
-  </div>
-
-  <div class="section">
-    <h2>🎯 マッチラボとは？</h2>
-    <p>教育・子育て・創作・AI活用──全部を“実験”としてつなぐ、横断型プロジェクト。</p>
-    <p>note・SNS発信／AIと教育の接続／創作×現実の接点／キャラ「マッチくん」の展開など、多層的に運営中。</p>
-    <p>光が「名無しマッチ」、闇が「燃えかすマッチ」、副業が「記録」。</p>
+    <div class="button-grid">
+      <a href="https://x.com/kasu_report" class="button report"><img src="x.png" class="icon">X</a>
+      <a href="https://note.com/kasu_report" class="button report"><img src="note.png" class="icon">note</a>
+      <a href="https://instagram.com/kasu_report" class="button report"><img src="insta.png" class="icon">Instagram</a>
+      <a href="details_record.html" class="button report"><img src="more.png" class="icon">その他の活動</a>
+    </div>
   </div>
 
   <div class="note">
-    <p>※ このサイトにはアフィリエイトリンクが含まれる場合があります。</p>
+    <p>※ このサイト・各SNS・noteには、アフィリエイトリンクが含まれる場合があります。</p>
     <p>Amazonアソシエイトおよび楽天アフィリエイトを利用しています。</p>
   </div>
 </body>
