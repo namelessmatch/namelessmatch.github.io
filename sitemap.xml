@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://shirutera.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://shirutera.com/about.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shirutera.com/habit.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shirutera.com/mental.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shirutera.com/smartphone.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shirutera.com/homework.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://shirutera.com/parent.html</loc>
+    <priority>0.7</priority>
+  </url>
+</urlset>
