@@ -95,6 +95,35 @@
         font-size: 1em;
       }
     }
+
+    .with-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.8em;
+      padding: 0.8em 1.6em;
+      border-radius: 1.5em;
+      margin: 0.5em 0;
+      text-decoration: none;
+      white-space: nowrap;
+      width: fit-content;       /* ✅ テキストサイズに合わせて幅が決まる */
+      max-width: 100%;          /* ✅ スマホ画面でもはみ出さないようにする */
+    }
+
+    .button-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .channel-desc {
+      margin: 0.3em 0 1.5em;
+      font-size: 0.95em;
+      color: #555;
+      line-height: 1.4;
+    }
+
+
   </style>
 </head>
 <body>
@@ -122,6 +151,38 @@
     <p>LINE登録で、教育テンプレやnote限定記事を無料プレゼント中！</p>
     <a href="https://lin.ee/7teX4nMG" target="_blank" class="button">LINEで登録する</a>
   </section>
+
+
+  <section>
+    <h2>キャラごとの発信チャンネル</h2>
+    <p>シルテラでは、テーマごとに異なる“キャラ”が情報を発信しています。</p>
+
+    <div class="channel-link">
+      <a href="/index.html" class="button with-icon">
+        <img src="/images/hakase.png" alt="博士マッチ" class="button-icon">
+        マッチ博士の教室
+      </a>
+      <p class="channel-desc">教育・子育て・心理の“気づき”を届けるメインチャンネル。</p>
+    </div>
+
+    <div class="channel-link">
+      <a href="/sub/index.html" class="button with-icon">
+        <img src="/images/kasu.png" alt="燃えかすマッチ" class="button-icon">
+        燃えかすマッチの語り部屋
+      </a>
+      <p class="channel-desc">教育制度の矛盾や社会批評、創作も展開する裏チャンネル。</p>
+    </div>
+
+    <div class="channel-link">
+      <a href="/extra/index.html" class="button with-icon">
+        <img src="/images/sf-match.png" alt="SFマッチ" class="button-icon">
+        SFマッチの研究ノート
+      </a>
+      <p class="channel-desc">副業・仕組み化・AI活用の実験記録を公開する研究チャンネル。</p>
+    </div>
+
+  </section>
+
 
   <section>
     <h2>noteでさらに深く学ぶ</h2>
