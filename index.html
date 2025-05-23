@@ -94,6 +94,11 @@
         width: 100%;
         font-size: 1em;
       }
+      .button.with-icon {
+        width: fit-content;
+        max-width: 100%;
+      }
+
     }
 
     .with-icon {
@@ -105,8 +110,8 @@
       margin: 0.5em 0;
       text-decoration: none;
       white-space: nowrap;
-      width: fit-content;
-      max-width: 100%;
+      width: fit-content;       /* ✅ テキストサイズに合わせて幅が決まる */
+      max-width: 100%;          /* ✅ スマホ画面でもはみ出さないようにする */
     }
 
     .button-icon {
@@ -122,6 +127,7 @@
       color: #555;
       line-height: 1.4;
     }
+
 
   </style>
 </head>
@@ -180,7 +186,7 @@
     <p>LINE登録で、教育テンプレやnote限定記事を無料プレゼント中！</p>
     <a href="https://lin.ee/7teX4nMG" target="_blank" class="button">LINEで登録する</a>
   </section>
-  
+
   <section>
     <h2>noteでさらに深く学ぶ</h2>
     <a href="https://note.com/nameless_match" target="_blank" class="button">noteへ</a>
