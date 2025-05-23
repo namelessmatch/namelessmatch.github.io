@@ -129,16 +129,138 @@
     }
 
 
+    body {
+      font-family: sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 16px;
+      margin: 6px 4px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .note-button {
+      background: linear-gradient(to right, #fddde6, #f5c2cc);
+      color: #000;
+    }
+    .line-button {
+      background: linear-gradient(to right, #a8ff78, #78ffd6);
+      color: #000;
+    }
+    .search-button {
+      background: linear-gradient(to right, #d1d8e0, #a5b1c2);
+      color: #000;
+    }
+
+    .no-hit {
+      animation: fadeIn 0.8s ease both;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(5px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .suggestion {
+      font-size: 0.95em;
+      color: #555;
+      margin-top: 0.5em;
+    }
+
   </style>
 </head>
 <body>
   <header>
-    <img src="shirutera.png" alt="シルテラバナー" class="banner">
+    <img src="/images/shirutera.png" alt="シルテラバナー" class="banner">
     <h1>シルテラ – SHIRUTERA</h1>
     <p>教育と心理を“照らす”再現知メディア。<br>
     現場と科学をつなぐ、#名無しマッチが運営する知識ラボです。</p>
-    <a href="#line" class="cta">LINEで相談・無料配布を見る</a>
+    <a class="cta line-button" href="#line">LINE登録でお役立ち情報プレゼント中</a>
   </header>
+
+
+<section>
+  <h2>🔍 キーワードで探す</h2>
+  <div class="search-box">
+    <input type="text" id="keyword1" placeholder="キーワードで検索..." />
+    <select id="target1">
+      <option value="">主な対象すべて</option>
+      <option value="保護者">保護者</option>
+      <option value="教育者">教育者</option>
+      <option value="高校生">高校生</option>
+      <option value="情報発信者">情報発信者</option>
+    </select>
+    <button onclick="search('keyword1', 'target1', 'results1')">検索</button>
+  </div>
+  <div id="results1"></div>
+</section>
+
+
+
+<script>
+  let data = [];
+
+  async function loadData() {
+    const res = await fetch("./data.json");
+    data = await res.json();
+    search("keyword1", "target1", "results1");
+    search("keyword2", "target2", "results2");
+  }
+
+  function search(inputId, selectId, resultId) {
+    const keyword = document.getElementById(inputId).value.toLowerCase();
+    const target = document.getElementById(selectId).value;
+    const results = document.getElementById(resultId);
+    results.innerHTML = "";
+
+    const filtered = data.filter(item => {
+      const keywords = item["キーワード"]?.toLowerCase().split(";") || [];
+      const matchKeyword = keyword === "" || keywords.some(k => k.includes(keyword));
+      const matchTarget = target === "" || item["主な対象"]?.includes(target);
+      return matchKeyword && matchTarget;
+    });
+
+
+    if (filtered.length === 0) {
+      const messages = [
+        "他のキーワードで試してみてください。",
+        "ジャンル別一覧も参考にどうぞ 👉 <a href='#'>こちら</a>",
+        "noteの人気記事から探す？ 👉 <a href='https://note.com/nameless_match'>noteへ</a>",
+        "LINEで直接相談もOK 👉 <a href='https://lin.ee/7teX4nMG' target='_blank'>LINE登録</a>"
+      ];
+      const suggestion = messages[Math.floor(Math.random() * messages.length)];
+      results.innerHTML = `
+        <p class="no-hit">該当するコンテンツが見つかりませんでした。</p>
+        <p class="suggestion">${suggestion}</p>
+      `;
+      return;
+    }
+
+
+
+    filtered.forEach(item => {
+      const el = document.createElement("div");
+      el.className = "item";
+      el.innerHTML = `
+        <h2>${item["タイトル"]}</h2>
+        <p><strong>ジャンル：</strong>${item["ジャンル"] || "-"}</p>
+        <p><strong>対象：</strong>${item["主な対象"] || "-"}</p>
+        <p><strong>媒体：</strong>${item["媒体"]}</p>
+        <p><a href="${item["URL"]}" target="_blank">リンクを開く</a></p>
+      `;
+      results.appendChild(el);
+    });
+  }
+
+  window.onload = loadData;
+</script>
+
 
   <section>
     <h2>悩みから探す</h2>
@@ -200,6 +322,31 @@
       <li><a href="#" class="button">📊 子どもを動かす声かけ（仮）</a></li>
     </ul>
   </section>
+
+<!-- 🔖 フック付きおすすめ記事リンク -->
+<section>
+<h2>📖 おすすめ記事</h2>
+<a class="button note-button" href="https://note.com/nameless_match/n/nf894c36e45e0">🧠 注意しても治らない忘れ物の正体とは？</a>
+<a class="button note-button" href="https://note.com/nameless_match/n/n680c8fa675a3">⏱ “早くしなさい”が子どもに与える意外な影響</a>
+<a class="button note-button" href="https://note.com/nameless_match/n/n44803de54d31">😠 なぜ子どもは怒っても反省しないのか？</a>
+<a class="button note-button" href="https://note.com/nameless_match/n/nb217251374b0">💬 学力が伸びる子の“親の声かけ”とは？</a>
+<a class="button note-button" href="https://note.com/nameless_match/n/nedc123b600ef">🚀 やる気ゼロでも動ける“脳の習慣術”</a>
+</section>
+
+<!-- 📚 マガジンリンク -->
+<section>
+<h2>📚 マガジン一覧</h2>
+<a class="button note-button" href="https://note.com/nameless_match/m/m0abae77951d5">👨‍👩‍👧‍👦 家庭と子育ての“もやもや”を照らす</a>
+<a class="button note-button" href="https://note.com/nameless_match/m/m82b490abcdbf">💡《ひとさじの灯り》──教育と気づきのnote</a>
+<a class="button note-button" href="https://note.com/nameless_match/m/m0d14d1624f98">🤖《AIが黒板に立つ日》──AIと学びのこれから</a>
+</section>
+
+<!-- 📝 ご相談フォーム -->
+<section>
+<h2>📨 ご意見・ご相談はこちら</h2>
+<a class="button search-button" href="https://forms.gle/erZkcXnKRJ9obuT1A">📝 ご意見・ご相談フォーム</a>
+</section>
+
 
   <section>
     <h2>運営者プロフィール</h2>
