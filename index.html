@@ -135,28 +135,55 @@
       margin: 0;
       padding: 0;
     }
+
+
     .button {
-      display: inline-block;
-      padding: 10px 16px;
-      margin: 6px 4px;
-      border-radius: 6px;
-      text-decoration: none;
+      display: block;                  /* ← 縦並びにする */
+      width: 100%;                     /* ← スマホでも横幅いっぱいに */
+      padding: 0.8em 1.2em;
+      margin: 0.6em 0;
+      font-size: 1rem;
       font-weight: bold;
-      font-size: 16px;
-      transition: background 0.3s;
+      border-radius: 1.2em;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
+
+    /* ホバー演出（共通） */
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+
+    /* 色別バリエーション */
     .note-button {
       background: linear-gradient(to right, #fddde6, #f5c2cc);
       color: #000;
     }
+
     .line-button {
       background: linear-gradient(to right, #a8ff78, #78ffd6);
       color: #000;
     }
+
     .search-button {
       background: linear-gradient(to right, #d1d8e0, #a5b1c2);
       color: #000;
     }
+
+
+    @media screen and (min-width: 600px) {
+      .button {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+
+
 
     .no-hit {
       animation: fadeIn 0.8s ease both;
