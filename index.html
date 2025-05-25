@@ -21,186 +21,10 @@
 
   <!-- favicon & アイコン -->
   <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
-
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: #f6f8fa;
-      margin: 0;
-      padding: 2em 1em;
-      color: #333;
-    }
-    header, section, footer {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 1.5em;
-      background: #ffffff;
-      border-radius: 1.5em;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2em;
-    }
-    h1, h2 {
-      font-weight: 700;
-      color: #2c3e50;
-    }
-    .cta, .button {
-      display: inline-block;
-      padding: 0.8em 1.6em;
-      margin: 0.5em 0;
-      border-radius: 1.5em;
-      background: linear-gradient(to right, #56ccf2, #2f80ed);
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-    .cta:hover, .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin: 0.5em 0;
-    }
-    footer nav ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1em;
-      justify-content: center;
-    }
-    footer small {
-      display: block;
-      text-align: center;
-      margin-top: 1em;
-      color: #888;
-    }
-    .banner {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto 1.5em auto;
-      border-radius: 1em;
-    }
-    @media screen and (max-width: 600px) {
-      .cta, .button {
-        width: 100%;
-        font-size: 1em;
-      }
-      .button.with-icon {
-        width: fit-content;
-        max-width: 100%;
-      }
-
-    }
-
-    .with-icon {
-      display: flex;
-      align-items: center;
-      gap: 0.8em;
-      padding: 0.8em 1.6em;
-      border-radius: 1.5em;
-      margin: 0.5em 0;
-      text-decoration: none;
-      white-space: nowrap;
-      width: fit-content;       /* ✅ テキストサイズに合わせて幅が決まる */
-      max-width: 100%;          /* ✅ スマホ画面でもはみ出さないようにする */
-    }
-
-    .button-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .channel-desc {
-      margin: 0.3em 0 1.5em;
-      font-size: 0.95em;
-      color: #555;
-      line-height: 1.4;
-    }
-
-
-    body {
-      font-family: sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
-
-
-    .button {
-      display: block;                  /* ← 縦並びにする */
-      width: 100%;                     /* ← スマホでも横幅いっぱいに */
-      padding: 0.8em 1.2em;
-      margin: 0.6em 0;
-      font-size: 1rem;
-      font-weight: bold;
-      border-radius: 1.2em;
-      text-align: center;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    /* ホバー演出（共通） */
-    .button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-    }
-
-    /* 色別バリエーション */
-    .note-button {
-      background: linear-gradient(to right, #fddde6, #f5c2cc);
-      color: #000;
-    }
-
-    .line-button {
-      background: linear-gradient(to right, #a8ff78, #78ffd6);
-      color: #000;
-    }
-
-    .search-button {
-      background: linear-gradient(to right, #d1d8e0, #a5b1c2);
-      color: #000;
-    }
-
-
-    @media screen and (min-width: 600px) {
-      .button {
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-
-
-
-
-    .no-hit {
-      animation: fadeIn 0.8s ease both;
-      opacity: 0;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(5px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .suggestion {
-      font-size: 0.95em;
-      color: #555;
-      margin-top: 0.5em;
-    }
-
-  </style>
+ 
 </head>
 <body>
   <header>
@@ -212,81 +36,83 @@
   </header>
 
 
-<section>
-  <h2>🔍 キーワードで探す</h2>
-  <div class="search-box">
-    <input type="text" id="keyword1" placeholder="キーワードで検索..." />
-    <select id="target1">
-      <option value="">主な対象すべて</option>
-      <option value="保護者">保護者</option>
-      <option value="教育者">教育者</option>
-      <option value="高校生">高校生</option>
-      <option value="情報発信者">情報発信者</option>
-    </select>
-    <button onclick="search('keyword1', 'target1', 'results1')">検索</button>
-  </div>
-  <div id="results1"></div>
-</section>
+  <section>
+    <h2>🔍 キーワードで過去の記事を探す</h2>
+    <div class="search-box">
+      <input type="text" id="keyword1" placeholder="キーワードで検索..." />
+      <select id="target1">
+        <option value="">主な対象すべて</option>
+        <option value="保護者">保護者</option>
+        <option value="教育者">教育者</option>
+        <option value="高校生">高校生</option>
+        <option value="情報発信者">情報発信者</option>
+     </select>
+     <button onclick="search('keyword1', 'target1', 'results1')">検索</button>
+   </div>
+   <div id="results1"></div>
+ </section>
+
+    <script>
+       let data = [];
+
+       async function loadData() {
+       const res = await fetch("./data.json");
+        data = await res.json();
+         // 検索は自動で実行しない（初回は空）
+      }
+
+        function search(inputId, selectId, resultId) {
+          const keyword = document.getElementById(inputId).value.toLowerCase();
+          const target = document.getElementById(selectId).value;
+          const results = document.getElementById(resultId);
+          results.innerHTML = "";
+
+           const filtered = data.filter(item => {
+           const keywords = item["キーワード"]?.toLowerCase().split(";") || [];
+           const matchKeyword = keyword === "" || keywords.some(k => k.includes(keyword));
+           const matchTarget = target === "" || item["主な対象"]?.includes(target);
+          return matchKeyword && matchTarget;
+        });
+
+        if (filtered.length === 0) {
+           const messages = [
+             "他のキーワードで試してみてください。",
+             "ジャンル別一覧も参考にどうぞ 👉 <a href='#'>こちら</a>",
+             "noteの人気記事から探す？ 👉 <a href='https://note.com/nameless_match'>noteへ</a>",
+             "LINEで直接相談もOK 👉 <a href='https://lin.ee/7teX4nMG' target='_blank'>LINE登録</a>"
+           ];
+           const suggestion = messages[Math.floor(Math.random() * messages.length)];
+           results.innerHTML = `
+             <p class="no-hit">該当するコンテンツが見つかりませんでした。</p>
+             <p class="suggestion">${suggestion}</p>
+           `;
+          return;
+         }
+
+           filtered.forEach(item => {
+           const id = "detail-" + Math.random().toString(36).slice(2);
+           const el = document.createElement("div");
+           el.className = "item";
+           el.innerHTML = `
+             <div class="item-title" data-target="${id}">
+             <a href="${item["URL"]}" target="_blank" class="button ">
+               ${item["タイトル"]}
+             </a>
+             </div>
+          `;
+           results.appendChild(el);
+          });         
+       }
+
+        window.onload = loadData;
+     </script>
 
 
 
-<script>
-  let data = [];
-
-  async function loadData() {
-    const res = await fetch("./data.json");
-    data = await res.json();
-    search("keyword1", "target1", "results1");
-    search("keyword2", "target2", "results2");
-  }
-
-  function search(inputId, selectId, resultId) {
-    const keyword = document.getElementById(inputId).value.toLowerCase();
-    const target = document.getElementById(selectId).value;
-    const results = document.getElementById(resultId);
-    results.innerHTML = "";
-
-    const filtered = data.filter(item => {
-      const keywords = item["キーワード"]?.toLowerCase().split(";") || [];
-      const matchKeyword = keyword === "" || keywords.some(k => k.includes(keyword));
-      const matchTarget = target === "" || item["主な対象"]?.includes(target);
-      return matchKeyword && matchTarget;
-    });
-
-
-    if (filtered.length === 0) {
-      const messages = [
-        "他のキーワードで試してみてください。",
-        "ジャンル別一覧も参考にどうぞ 👉 <a href='#'>こちら</a>",
-        "noteの人気記事から探す？ 👉 <a href='https://note.com/nameless_match'>noteへ</a>",
-        "LINEで直接相談もOK 👉 <a href='https://lin.ee/7teX4nMG' target='_blank'>LINE登録</a>"
-      ];
-      const suggestion = messages[Math.floor(Math.random() * messages.length)];
-      results.innerHTML = `
-        <p class="no-hit">該当するコンテンツが見つかりませんでした。</p>
-        <p class="suggestion">${suggestion}</p>
-      `;
-      return;
-    }
-
-
-
-    filtered.forEach(item => {
-      const el = document.createElement("div");
-      el.className = "item";
-      el.innerHTML = `
-        <h2>${item["タイトル"]}</h2>
-        <p><strong>ジャンル：</strong>${item["ジャンル"] || "-"}</p>
-        <p><strong>対象：</strong>${item["主な対象"] || "-"}</p>
-        <p><strong>媒体：</strong>${item["媒体"]}</p>
-        <p><a href="${item["URL"]}" target="_blank">リンクを開く</a></p>
-      `;
-      results.appendChild(el);
-    });
-  }
-
-  window.onload = loadData;
-</script>
+    <section id="new-articles">
+      <h2>🆕 新着記事</h2>
+      <div id="latest-articles-list" class="button-wrap"></div>
+    </section>
 
 
   <section>
@@ -398,4 +224,36 @@
     <small>&copy; 2025 シルテラ – SHIRUTERA / #名無しマッチ 教育メディア</small>
   </footer>
 </body>
+
+<script>
+async function loadNewArticlesFromData() {
+  try {
+    const res = await fetch('./data.json');
+    const data = await res.json();
+
+    const container = document.getElementById('latest-articles-list');
+
+    const recent = data
+      .filter(article => article.URL)
+      .slice(0, 5); // 表示数調整可
+
+    recent.forEach(article => {
+      const btn = document.createElement('a');
+      btn.href = article.URL;
+      btn.className = 'button';
+      btn.textContent = article.タイトル;
+      container.appendChild(btn);
+    });
+  } catch (e) {
+    console.error('新着記事の読み込みに失敗しました:', e);
+  }
+}
+
+window.onload = () => {
+  if (typeof loadData === 'function') loadData();
+  loadNewArticlesFromData();
+};
+</script>
+
+
 </html>
