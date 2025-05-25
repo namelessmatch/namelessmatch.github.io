@@ -1,4 +1,4 @@
-   body {
+    body {
       font-family: "Segoe UI", sans-serif;
       background-color: #f6f8fa;
       margin: 0;
@@ -71,7 +71,6 @@
       }
 
     }
-
     .with-icon {
       display: flex;
       align-items: center;
@@ -84,22 +83,18 @@
       width: fit-content;       /* ✅ テキストサイズに合わせて幅が決まる */
       max-width: 100%;          /* ✅ スマホ画面でもはみ出さないようにする */
     }
-
     .button-icon {
       width: 32px;
       height: 32px;
       border-radius: 50%;
       object-fit: cover;
     }
-
     .channel-desc {
       margin: 0.3em 0 1.5em;
       font-size: 0.95em;
       color: #555;
       line-height: 1.4;
     }
-
-
     .button {
       display: block;                  /* ← 縦並びにする */
       width: 100%;                     /* ← スマホでも横幅いっぱいに */
@@ -113,30 +108,24 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
-
     /* ホバー演出（共通） */
     .button:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0,0,0,0.1);
     }
-
     /* 色別バリエーション */
     .note-button {
       background: linear-gradient(to right, #fddde6, #f5c2cc);
       color: #000;
     }
-
     .line-button {
       background: linear-gradient(to right, #a8ff78, #78ffd6);
       color: #000;
     }
-
     .search-button {
       background: linear-gradient(to right, #d1d8e0, #a5b1c2);
       color: #000;
     }
-
-
     @media screen and (min-width: 600px) {
       .button {
         max-width: 600px;
@@ -144,7 +133,6 @@
         margin-right: auto;
       }
     }
-
     .no-hit {
       animation: fadeIn 0.8s ease both;
       opacity: 0;
@@ -153,16 +141,18 @@
       0% { opacity: 0; transform: translateY(5px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
     .suggestion {
       font-size: 0.95em;
       color: #555;
       margin-top: 0.5em;
     }
-
     .slim-button {
-  　　margin: 0.2em 0 !important;
-  　　padding: 0.4em 1em !important;
-  　　font-size: 0.95rem;
-  　　line-height: 1.2;
-　　}
+      margin: 0.2em 0;
+      padding: 0.4em 1em;
+      font-size: 0.95rem;
+      line-height: 1.2;
+    }
+    .btn-line {
+      display: block;
+      margin: 0 auto;
+    }
