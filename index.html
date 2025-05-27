@@ -31,7 +31,7 @@
     <img src="/images/shirutera.png" alt="シルテラバナー" class="banner">
     <h1>シルテラ – SHIRUTERA</h1>
     <p>教育と心理を“照らす”再現知メディア。<br>
-    現場と科学をつなぐ、#名無しマッチが運営する知識ラボです。</p>
+    現場(家庭・学校)と科学をつなぐ、#名無しマッチが運営する知識ラボです。</p>
     <a class="cta line-button" href="#line">LINE登録でお役立ち情報プレゼント中</a>
   </header>
 
@@ -154,6 +154,14 @@
       <p class="channel-desc">副業・仕組み化・AI活用の実験記録を公開する研究チャンネル。</p>
     </div>
 
+    <div class="channel-link">
+      <a href="stamp.html" class="button with-icon">
+        <img src="/images/stamp01.png" alt="マッチくん" class="button-icon">
+        マッチくんスタンプ紹介ページ
+      </a>
+      <p class="channel-desc">シルテラーshiruteraのマスコットキャラ、マッチくんのlineスタンプはこちら。</p>
+    </div>
+
   </section>
 
   <section id="line">
@@ -234,8 +242,13 @@ async function loadNewArticlesFromData() {
     const container = document.getElementById('latest-articles-list');
 
     const recent = data
-      .filter(article => article.URL)
-      .slice(0, 5); // 表示数調整可
+      .filter(article => article.URL && article.ID)
+      .sort((a, b) => {
+        const idA = parseInt(a.ID.replace('id_', ''), 10);
+        const idB = parseInt(b.ID.replace('id_', ''), 10);
+        return idB - idA; // IDが大きい順
+      })
+      .slice(0, 5); // 最新5件
 
     recent.forEach(article => {
       const btn = document.createElement('a');
@@ -254,6 +267,5 @@ window.onload = () => {
   loadNewArticlesFromData();
 };
 </script>
-
 
 </html>
