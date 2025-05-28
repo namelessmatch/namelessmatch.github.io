@@ -2,31 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shirutera.com/</loc>
-    <priority>1.0</priority>
-    <lastmod>2025-05-23</lastmod>
-  </url>
-  <url>
-    <loc>https://shirutera.com/about.html</loc>
-    <priority>0.8</priority>
+    <lastmod>2025-05-28</lastmod>
   </url>
   <url>
     <loc>https://shirutera.com/habit.html</loc>
-    <priority>0.7</priority>
+    <lastmod>2025-05-28</lastmod>
   </url>
   <url>
     <loc>https://shirutera.com/mental.html</loc>
-    <priority>0.7</priority>
+    <lastmod>2025-05-28</lastmod>
   </url>
   <url>
     <loc>https://shirutera.com/smartphone.html</loc>
-    <priority>0.7</priority>
+    <lastmod>2025-05-28</lastmod>
   </url>
   <url>
     <loc>https://shirutera.com/homework.html</loc>
-    <priority>0.7</priority>
+    <lastmod>2025-05-28</lastmod>
   </url>
   <url>
     <loc>https://shirutera.com/parent.html</loc>
-    <priority>0.7</priority>
+    <lastmod>2025-05-28</lastmod>
+  </url>
+  <url>
+    <loc>https://shirutera.com/teacher.html</loc>
+    <lastmod>2025-05-28</lastmod>
+  </url>
+  <url>
+    <loc>https://shirutera.com/stamp.html</loc>
+    <lastmod>2025-05-28</lastmod>
+  </url>
+  <url>
+    <loc>https://shirutera.com/aigakusyu.html</loc>
+    <lastmod>2025-05-28</lastmod>
   </url>
 </urlset>
