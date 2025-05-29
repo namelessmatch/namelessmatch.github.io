@@ -60,74 +60,8 @@
 <header>
 <img alt="シルテラバナー" class="banner" src="/images/shirutera.png"/>
 <a class="cta line-button" href="#line">LINE登録でお役立ち情報プレゼント中</a>
-<h2>🔍 キーワードで過去の記事を探す</h2>
-<div class="search-box">
-<input id="keyword1" placeholder="キーワードで検索..." type="text"/>
-<select id="target1">
-<option value="">主な対象すべて</option>
-<option value="保護者">保護者</option>
-<option value="教育者">教育者</option>
-<option value="高校生">高校生</option>
-<option value="情報発信者">情報発信者</option>
-</select>
-<button onclick="search('keyword1', 'target1', 'results1')">検索</button>
-</div>
-<div id="results1"></div>
 </header>
-<script>
-       let data = [];
 
-       async function loadData() {
-       const res = await fetch("./data.json");
-        data = await res.json();
-         // 検索は自動で実行しない（初回は空）
-      }
-
-        function search(inputId, selectId, resultId) {
-          const keyword = document.getElementById(inputId).value.toLowerCase();
-          const target = document.getElementById(selectId).value;
-          const results = document.getElementById(resultId);
-          results.innerHTML = "";
-
-           const filtered = data.filter(item => {
-           const keywords = item["キーワード"]?.toLowerCase().split(";") || [];
-           const matchKeyword = keyword === "" || keywords.some(k => k.includes(keyword));
-           const matchTarget = target === "" || item["主な対象"]?.includes(target);
-          return matchKeyword && matchTarget;
-        });
-
-        if (filtered.length === 0) {
-           const messages = [
-             "他のキーワードで試してみてください。",
-             "ジャンル別一覧も参考にどうぞ 👉 <a href='#'>こちら</a>",
-             "noteの人気記事から探す？ 👉 <a href='https://note.com/nameless_match'>noteへ</a>",
-             "LINEで直接相談もOK 👉 <a href='https://lin.ee/7teX4nMG' target='_blank'>LINE登録</a>"
-           ];
-           const suggestion = messages[Math.floor(Math.random() * messages.length)];
-           results.innerHTML = `
-             <p class="no-hit">該当するコンテンツが見つかりませんでした。</p>
-             <p class="suggestion">${suggestion}</p>
-           `;
-          return;
-         }
-
-           filtered.forEach(item => {
-           const id = "detail-" + Math.random().toString(36).slice(2);
-           const el = document.createElement("div");
-           el.className = "item";
-           el.innerHTML = `
-             <div class="item-title" data-target="${id}">
-             <a href="${item["URL"]}" target="_blank" class="button ">
-               ${item["タイトル"]}
-             </a>
-             </div>
-          `;
-           results.appendChild(el);
-          });         
-       }
-
-        window.onload = loadData;
-     </script>
 <section id="section1">
 <h1>マッチ博士の教室ー名無しマッチによる教育のホントー</h1>
 <p>ベテラン元教員・名無しマッチの実体験や経験則による教育・子育て・学習のアレコレ</p>
@@ -138,13 +72,13 @@
 <p class="channel-desc">AIは“英語を話す相手”になれるのか？</p>
 </div>
 <div class="channel-link">
-<a class="button with-icon" href="/sub/index.html">
+<a class="button with-icon" href="#/index.html">
         coming soon
       </a>
 <p class="channel-desc">coming soon</p>
 </div>
 <div class="channel-link">
-<a class="button with-icon" href="/extra/index.html">
+<a class="button with-icon" href="#/index.html">
         coming soon
       </a>
 <p class="channel-desc">coming soon</p>
