@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6KMB9LVSCJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6KMB9LVSCJ');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>シルテラ｜教育と心理の再現知メディア｜学習・不登校・発達まで網羅</title>
+  <meta name="description" content="家庭学習、やる気、不登校、発達、スマホ依存──あらゆる教育の悩みに、元教員が“脳と心”の視点から答える『シルテラ』です。心理と行動科学に基づいた再現知メディア。">
+
+  <!-- SNSシェア用OGP設定 -->
+  <meta property="og:title" content="シルテラ｜教育と心理の再現知メディア">
+  <meta property="og:description" content="学習・不登校・発達・スマホ依存…すべての教育の悩みに“脳と心”から答える。#名無しマッチが届ける知識ラボ。">
+  <meta property="og:image" content="/og-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shirutera.com/">
+  <meta property="og:site_name" content="シルテラ">
+
+  <!-- Twitterカード対応 -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@namelessmatch">
+  <meta name="twitter:creator" content="@namelessmatch">
+
+  <!-- favicon & アイコン -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/style.css">
+ 
+</head>
+<body>
+  <header>
+    <img src="/images/shirutera.png" alt="シルテラバナー" class="banner">
+    <a class="cta line-button" href="#line">LINE登録でお役立ち情報プレゼント中</a>
+  
+
+
+  
+    <h2>🔍 キーワードで過去の記事を探す</h2>
+    <div class="search-box">
+      <input type="text" id="keyword1" placeholder="キーワードで検索..." />
+      <select id="target1">
+        <option value="">主な対象すべて</option>
+        <option value="保護者">保護者</option>
+        <option value="教育者">教育者</option>
+        <option value="高校生">高校生</option>
+        <option value="情報発信者">情報発信者</option>
+     </select>
+     <button onclick="search('keyword1', 'target1', 'results1')">検索</button>
+   </div>
+   <div id="results1"></div>
+ </header>
+
+    <script>
+       let data = [];
+
+       async function loadData() {
+       const res = await fetch("./data.json");
+        data = await res.json();
+         // 検索は自動で実行しない（初回は空）
+      }
+
+        function search(inputId, selectId, resultId) {
+          const keyword = document.getElementById(inputId).value.toLowerCase();
+          const target = document.getElementById(selectId).value;
+          const results = document.getElementById(resultId);
+          results.innerHTML = "";
+
+           const filtered = data.filter(item => {
+           const keywords = item["キーワード"]?.toLowerCase().split(";") || [];
+           const matchKeyword = keyword === "" || keywords.some(k => k.includes(keyword));
+           const matchTarget = target === "" || item["主な対象"]?.includes(target);
+          return matchKeyword && matchTarget;
+        });
+
+        if (filtered.length === 0) {
+           const messages = [
+             "他のキーワードで試してみてください。",
+             "ジャンル別一覧も参考にどうぞ 👉 <a href='#'>こちら</a>",
+             "noteの人気記事から探す？ 👉 <a href='https://note.com/nameless_match'>noteへ</a>",
+             "LINEで直接相談もOK 👉 <a href='https://lin.ee/7teX4nMG' target='_blank'>LINE登録</a>"
+           ];
+           const suggestion = messages[Math.floor(Math.random() * messages.length)];
+           results.innerHTML = `
+             <p class="no-hit">該当するコンテンツが見つかりませんでした。</p>
+             <p class="suggestion">${suggestion}</p>
+           `;
+          return;
+         }
+
+           filtered.forEach(item => {
+           const id = "detail-" + Math.random().toString(36).slice(2);
+           const el = document.createElement("div");
+           el.className = "item";
+           el.innerHTML = `
+             <div class="item-title" data-target="${id}">
+             <a href="${item["URL"]}" target="_blank" class="button ">
+               ${item["タイトル"]}
+             </a>
+             </div>
+          `;
+           results.appendChild(el);
+          });         
+       }
+
+        window.onload = loadData;
+     </script>
+ 
+  <section>
+    <h1>マッチ博士の教室ー名無しマッチによる教育のホントー</h1>
+    <p>ベテラン元教員・名無しマッチの実体験や経験則による教育・子育て・学習のアレコレ</p>
+
+    <div class="channel-link">
+      <a href="/articles/aigakusyu.html" class="button with-icon">
+        ChatGPTは英語学習をどう変えるのか？
+      </a>
+      <p class="channel-desc">AIは“英語を話す相手”になれるのか？</p>
+    </div>
+
+    <div class="channel-link">
+      <a href="/sub/index.html" class="button with-icon">
+        coming soon
+      </a>
+      <p class="channel-desc">coming soon</p>
+    </div>
+
+    <div class="channel-link">
+      <a href="/extra/index.html" class="button with-icon">
+        coming soon
+      </a>
+      <p class="channel-desc">coming soon</p>
+    </div>
+
+  </section>
+
+  <section id="line">
+    <h2>LINEで学習サポート・無料配布中</h2>
+    <p>LINE登録で、教育テンプレやnote限定記事を無料プレゼント中！</p>
+    <a href="https://lin.ee/7teX4nMG" target="_blank" class="button">LINEで登録する</a>
+  </section>
+
+  <section>
+    <h2>noteでさらに深く学ぶ</h2>
+    <a href="https://note.com/nameless_match" target="_blank" class="button">noteへ</a>
+  </section>
+
+  <section>
+    <h2>人気記事</h2>
+    <ul>
+      <li><a href="https://note.com/nameless_match/n/nc6696f4ab49d" class="button">🧠 意味調べを“授業”にする──文脈理解・説明力・集団心理を活かす方法</a></li>
+      <li><a href="https://note.com/nameless_match/n/n8a09084b87ee" class="button">🗂 自宅学習の最適化：効率的に学べるオンライン学習ツール</a></li>
+      <li><a href="https://note.com/nameless_match/n/n9f37bd411063" class="button">📊「体育＝苦手」は誰が作った？クロール25mの“評価”から考える、できたを育てる授業</a></li>
+    </ul>
+  </section>
+
+<!-- 🔖 フック付きおすすめ記事リンク -->
+<section>
+<h2>📖 おすすめ記事</h2>
+<a class="button note-button" href="https://note.com/nameless_match/n/nf894c36e45e0">🧠 注意しても治らない忘れ物の正体とは？</a>
+<a class="button note-button" href="https://note.com/nameless_match/n/n680c8fa675a3">⏱ “早くしなさい”が子どもに与える意外な影響</a>
+<a class="button note-button" href="https://note.com/nameless_match/n/n44803de54d31">😠 なぜ子どもは怒っても反省しないのか？</a>
+<a class="button note-button" href="https://note.com/nameless_match/n/nb217251374b0">💬 学力が伸びる子の“親の声かけ”とは？</a>
+<a class="button note-button" href="https://note.com/nameless_match/n/nedc123b600ef">🚀 やる気ゼロでも動ける“脳の習慣術”</a>
+</section>
+
+<!-- 📚 マガジンリンク -->
+<section>
+<h2>📚 マガジン一覧</h2>
+<a class="button note-button" href="https://note.com/nameless_match/m/m0abae77951d5">👨‍👩‍👧‍👦 家庭と子育ての“もやもや”を照らす</a>
+<a class="button note-button" href="https://note.com/nameless_match/m/m82b490abcdbf">💡《ひとさじの灯り》──教育と気づきのnote</a>
+<a class="button note-button" href="https://note.com/nameless_match/m/m0d14d1624f98">🤖《AIが黒板に立つ日》──AIと学びのこれから</a>
+</section>
+
+<!-- 📝 ご相談フォーム -->
+<section>
+<h2>📨 ご意見・ご相談はこちら</h2>
+<a class="button search-button" href="https://forms.gle/erZkcXnKRJ9obuT1A">📝 ご意見・ご相談フォーム</a>
+</section>
+
+
+  <section>
+    <h2>運営者プロフィール（＃名無しマッチとは？）</h2>
+    <p>元・教務主任／主幹（大阪では首席）／教育委員会事務局職員<br>専門：学習心理・行動科学・教育マネジメント</p>
+    <a href="/about.html" class="button">詳しいプロフィールを見る</a>
+  </section>
+
+  <footer>
+    <nav>
+      <ul>
+        <li><a href="habit.html">学習習慣</a></li>
+        <li><a href="mental.html">メンタルケア</a></li>
+        <li><a href="smartphone.html">スマホ依存</a></li>
+        <li><a href="homework.html">宿題</a></li>
+        <li><a href="parent.html">保護者関係</a></li>
+        <li><a href="about.html">運営者情報</a></li>
+        <li><a href="https://note.com/nameless_match">note</a></li>
+        <li><a href="https://x.com/namelessmatch">X</a></li>
+        <li><a href="https://www.youtube.com/@kasu_report">YouTube</a></li>
+      </ul>
+    </nav>
+    <small>&copy; 2025 シルテラ – SHIRUTERA / #名無しマッチ 教育メディア</small>
+  </footer>
+</body>
+
+<script>
+async function loadNewArticlesFromData() {
+  try {
+    const res = await fetch('./data.json');
+    const data = await res.json();
+
+    const container = document.getElementById('latest-articles-list');
+
+    const recent = data
+      .filter(article => article.URL)
+      .slice(0, 5); // 表示数調整可
+
+    recent.forEach(article => {
+      const btn = document.createElement('a');
+      btn.href = article.URL;
+      btn.className = 'button';
+      btn.textContent = article.タイトル;
+      container.appendChild(btn);
+    });
+  } catch (e) {
+    console.error('新着記事の読み込みに失敗しました:', e);
+  }
+}
+
+window.onload = () => {
+  if (typeof loadData === 'function') loadData();
+  loadNewArticlesFromData();
+};
+</script>
+
+
+</html>
