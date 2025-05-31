@@ -184,20 +184,60 @@
       </p>
     </section>
     <section class="related" id="section2">
-      <h3>🔗 関連記事</h3>
-      <ul>
-        <li><a
-            href="https://note.com/nameless_match/n/n1cacb1da7c23?magazine_key=m0d14d1624f98">『AIと書く物語の授業──「ズル」じゃなくて「工夫」なんだよ』</a>
-        </li>
-        <li><a href="https://note.com/nameless_match/n/n21d3e83d0d72?magazine_key=m0d14d1624f98">🎤 AIと語る、AIの未来
-            【第1回】熱量がなければ学びは始まらない</a></li>
-      </ul>
+
       <div style="text-align: center; margin-top: 3em;">
         <a href="https://lin.ee/7teX4nMG" class="button line-button btn-line" target="_blank">
           📩他にも知りたい方はLINEへ
         </a>
       </div>
     </section>
+    <section class="related">
+      <h3>🔗 こちらの記事もどうぞ</h3>
+      <ul class="recommend-list"></ul> <!-- ここにJSで2件追加される -->
+    </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const url = "https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec?mode=select20";
+        const container = document.querySelector(".related .recommend-list");
+
+        if (!container) return;
+
+        try {
+          const res = await fetch(url);
+          const articles = await res.json();
+
+          if (!Array.isArray(articles) || articles.length === 0) return;
+
+          // ランダムに2件選ぶ
+          const shuffled = articles.sort(() => 0.5 - Math.random()).slice(0, 2);
+
+          // 表示
+          shuffled.forEach(item => {
+            const li = document.createElement("li");
+
+            const a = document.createElement("a");
+            a.href = item.URL || "#";
+
+            const title = document.createElement("strong");
+            title.textContent = item.タイトル || "（無題）";
+
+            const tags = document.createElement("small");
+            tags.textContent = item.キーワード || "";
+
+            const summary = document.createElement("p");
+            summary.textContent = item.要約 || "";
+
+            a.appendChild(title);
+            a.appendChild(tags);
+            a.appendChild(summary);
+            li.appendChild(a);
+            container.appendChild(li);
+          });
+        } catch (e) {
+          console.error("記事の取得に失敗しました", e);
+        }
+      });
+    </script>
   </main>
   <footer class="site-footer">
     <small>© 2025 シルテラ – SHIRUTERA / #名無しマッチ</small>
