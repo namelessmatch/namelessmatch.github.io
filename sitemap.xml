@@ -1,51 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shirutera.com/第１層/about.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/index.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/habit.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/about.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/homework.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/habit.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/index - コピー.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/homework.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/index.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/mental.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/mental.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/parent.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/parent.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/smartphone.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/smartphone.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/stamp.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/stamp.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/teacher.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/teacher.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/main/articles/aigakusyu.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/main/index.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/sub/articles2/minkan.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
   <url>
-    <loc>https://shirutera.com/第１層/main/articles/aigakusyu.html</loc>
-    <lastmod>2025-05-29</lastmod>
+    <loc>https://shirutera.com/extra/articles3/start.html</loc>
+    <lastmod>2025-05-31</lastmod>
   </url>
 </urlset>
