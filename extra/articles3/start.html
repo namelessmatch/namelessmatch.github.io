@@ -167,6 +167,53 @@
         </a>
       </div>
     </div>
+    <section class="related">
+      <h3>🔗 こちらの記事もどうぞ</h3>
+      <ul class="recommend-list"></ul> <!-- ここにJSで2件追加される -->
+    </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const url = "https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec?mode=select20";
+        const container = document.querySelector(".related .recommend-list");
+
+        if (!container) return;
+
+        try {
+          const res = await fetch(url);
+          const articles = await res.json();
+
+          if (!Array.isArray(articles) || articles.length === 0) return;
+
+          // ランダムに2件選ぶ
+          const shuffled = articles.sort(() => 0.5 - Math.random()).slice(0, 2);
+
+          // 表示
+          shuffled.forEach(item => {
+            const li = document.createElement("li");
+
+            const a = document.createElement("a");
+            a.href = item.URL || "#";
+
+            const title = document.createElement("strong");
+            title.textContent = item.タイトル || "（無題）";
+
+            const tags = document.createElement("small");
+            tags.textContent = item.キーワード || "";
+
+            const summary = document.createElement("p");
+            summary.textContent = item.要約 || "";
+
+            a.appendChild(title);
+            a.appendChild(tags);
+            a.appendChild(summary);
+            li.appendChild(a);
+            container.appendChild(li);
+          });
+        } catch (e) {
+          console.error("記事の取得に失敗しました", e);
+        }
+      });
+    </script>
     <footer class="site-footer">
       <small>© 2025 シルテラ – SHIRUTERA / #名無しマッチ</small>
     </footer>
