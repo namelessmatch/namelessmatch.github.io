@@ -62,118 +62,28 @@
   <header>
     <img alt="シルテラバナー" class="banner" src="/images/shirutera.png" />
     <a class="cta line-button" href="#line">LINE登録でお役立ち情報プレゼント中</a>
-    <h2>🔍 キーワードで過去の記事を探す</h2>
-    <!-- 🔍 検索エリア -->
-    <div class="search-button-wrapper">
-      <input id="searchInput" placeholder="キーワードを入力" type="text" />
-      <button onclick="suggestKeywords(document.getElementById('searchInput').value)">候補を見る</button>
-      <select id="targetSelect">
-        <option value="">対象を選択</option>
-        <option value="教員">教員</option>
-        <option value="保護者">保護者</option>
-        <option value="子ども">子ども</option>
-        <option value="情報発信者">情報発信者</option>
-      </select>
-      <select id="channelSelect">
-        <option value="">チャンネルを選択</option>
-        <option value="本">教育の博士</option>
-        <option value="裏">本音の燃えかす</option>
-        <option value="記録">副業実験のSF</option>
-      </select>
-      <button class="search-button-actual"
-        onclick="search('searchInput','targetSelect','channelSelect','resultArea')">検索</button>
-    </div>
-    <div id="suggestions"></div>
-    <div id="loading" style="display:none;">読み込み中...</div>
-    <!-- 🔽 検索結果表示エリア -->
-    <div id="resultArea"></div>
-    <script>
-      let data = [];
-      let keywordList = [];
-      const JSON_URL = "https://script.google.com/macros/s/AKfycbysHVUskI0Q5gj-FLdqFQUg2AsuGriZvKo-Zp6l59VKXMXY4SRIxRwXqlSHL5DbXeOFCw/exec";
 
-      async function loadData() {
-        document.getElementById('loading').style.display = 'block';
-        try {
-          const res = await fetch(JSON_URL);
-          data = await res.json();
-          keywordList = [...new Set(data.flatMap(item => item.keywords?.split(';') || []))];
-        } catch (e) {
-          console.error("データの読み込みに失敗しました", e);
-        }
-        document.getElementById('loading').style.display = 'none';
-      }
-
-      function suggestKeywords(input) {
-        const suggestionBox = document.getElementById('suggestions');
-        suggestionBox.innerHTML = "";
-        if (!input || input.length < 2) return;
-        const suggestions = keywordList.filter(k => k.toLowerCase().includes(input.toLowerCase())).slice(0, 5);
-        suggestions.forEach(k => {
-          const el = document.createElement("div");
-          el.textContent = k;
-          el.className = "suggestion-item";
-          el.onclick = () => {
-            document.getElementById('searchInput').value = k;
-            suggestionBox.innerHTML = "";
-          };
-          suggestionBox.appendChild(el);
-        });
-      }
-
-      function search(inputId, selectId, channelId, resultId) {
-        const keyword = document.getElementById(inputId).value.toLowerCase();
-        const target = document.getElementById(selectId).value;
-        const channel = document.getElementById(channelId).value;
-        const results = document.getElementById(resultId);
-        results.innerHTML = "";
-        document.getElementById('loading').style.display = 'block';
-
-        const filtered = data.filter(item => {
-          const keywords = item.keywords?.toLowerCase().split(";") || [];
-          const matchKeyword = keyword === "" || keywords.some(k => k.includes(keyword));
-          const matchTarget = target === "" || (item.target?.includes(target));
-          const matchChannel = channel === "" || (item.channel === channel);
-          return matchKeyword && matchTarget && matchChannel;
-        });
-
-        const displayItems = filtered.length > 10
-          ? filtered.sort(() => 0.5 - Math.random()).slice(0, 10)
-          : filtered;
-
-        document.getElementById('loading').style.display = 'none';
-
-        if (displayItems.length === 0) {
-          results.innerHTML = `
-        <p class="no-hit">該当するコンテンツが見つかりませんでした。</p>
-        <p class="suggestion">他のキーワードや対象を試してみてください。</p>
-      `;
-          return;
-        }
-
-        displayItems.forEach(item => {
-          const el = document.createElement("div");
-          el.className = "item-detail";
-          el.innerHTML = `
-        <a href="${item.url}" class="button note-button" target="_blank">${item.title}</a>
-        <div class="summary">${item.summary || "（要約なし）"}</div>
-      `;
-          results.appendChild(el);
-        });
-      }
-
-      window.onload = loadData;
-    </script>
   </header>
 
   <section id="section1">
-    <h1>SFマッチの研究ノート：快適グッズ紹介・副業仕組み化・AI活用の実験記録を公開する研究チャンネル</h1>
-    <p>ベテラン元教員・名無しマッチによる、先生も子どもも保護者も快適で豊かな暮らしを送るための紹介ページ</p>
+<h1>SFマッチの研究ノート：快適グッズ紹介・副業仕組み化・AI活用の実験記録を公開する研究チャンネル</h1>
+ <p> ここは、「暮らしをちょっと未来型にしたい人」のための実験ラボ。<br>
+   教育現場を20年以上経験してきた名無しマッチが、日々の生活に役立つ快適グッズや、
+   副業の自動化、AIツールの活用法などを、わかりやすく紹介しています。<br> 
+   チャンネルのコンセプトは「科学する生活」──ただ便利なだけじゃない、考えたくなるヒントや仕組みも一緒に届けます。<br> 
+   「どうすればもっと楽しく、ラクに、そして豊かに暮らせるか？」という問いを軸に、先生や保護者、
+   忙しい個人が“ちょっと先の自分”に出会える情報を発信中。<br> 
+   SNSやnoteとも連動して、試してみたこと・うまくいった工夫・失敗から学んだ知見まで、ありのままに記録しています。<br>
+   未来にやさしい発想と、知的な楽しさを。SFマッチの研究ノートへようこそ。 </p>
     <div class="channel-link">
       <a class="button with-icon" href="articles3/start.html">
         思考と暮らしを“実験”する場所──SFマッチ、はじめます
       </a>
-      <p class="channel-desc">大阪メトロに貼られた「民間校長募集」の異様さ</p>
+      <p class="channel-desc">SFマッチは、ちょっと未来っぽい暮らしを“実験”します。<br>
+教員ライフを快適にする道具や、子どもとの暮らしの工夫、AIや仕組みづくりの試行錯誤を、記録として残しています。<br>
+成功も失敗もまるごと公開中。<br>
+「とりあえずやってみた」が好きな人、ぜひのぞいてみてください。
+</p>
     </div>
     <div class="channel-link">
       <a class="button with-icon" href="#/sub/index.html">
@@ -217,14 +127,7 @@
     <a class="button note-button" href="https://note.com/nameless_match/n/nb217251374b0">💬 学力が伸びる子の“親の声かけ”とは？</a>
     <a class="button note-button" href="https://note.com/nameless_match/n/nedc123b600ef">🚀 やる気ゼロでも動ける“脳の習慣術”</a>
   </section>
-  <!-- 📚 マガジンリンク -->
-  <section id="section6">
-    <h2>📚 マガジン一覧</h2>
-    <a class="button note-button" href="https://note.com/nameless_match/m/m0abae77951d5">👨‍👩‍👧‍👦
-      家庭と子育ての“もやもや”を照らす</a>
-    <a class="button note-button" href="https://note.com/nameless_match/m/m82b490abcdbf">💡《ひとさじの灯り》──教育と気づきのnote</a>
-    <a class="button note-button" href="https://note.com/nameless_match/m/m0d14d1624f98">🤖《AIが黒板に立つ日》──AIと学びのこれから</a>
-  </section>
+
   <!-- 📝 ご相談フォーム -->
   <section id="section7">
     <h2>📨 ご意見・ご相談はこちら</h2>
@@ -245,8 +148,8 @@
         <li><a href="/parent.html">保護者関係</a></li>
         <li><a href="/about.html">運営者情報</a></li>
         <li><a href="https://note.com/nameless_match">note</a></li>
-        <li><a href="https://x.com/namelessmatch">X</a></li>
-        <li><a href="https://www.youtube.com/@kasu_report">YouTube</a></li>
+        <li><a href="https://x.com/shirutera_com">X</a></li>
+        <li><a href="https://www.youtube.com/@shirutera">YouTube</a></li>
       </ul>
     </nav>
     <small>© 2025 シルテラ – SHIRUTERA / #名無しマッチ 教育メディア</small>
