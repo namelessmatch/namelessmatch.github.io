@@ -65,118 +65,23 @@
     <h1>教育と心理で“学び”を照らす──Shirutera公式メディア</h1>
     <p>教育現場×脳科学×行動分析から生まれた、再現性ある“学び方”をすべての人に。</p>
     <a class="cta line-button" href="#line">LINE登録でお役立ち情報プレゼント中</a>
-    <h2>🔍 キーワードで過去の記事を探す</h2>
-    <!-- 🔍 検索エリア -->
-    <div class="search-button-wrapper">
-      <input id="searchInput" placeholder="キーワードを入力" type="text" />
-      <button onclick="suggestKeywords(document.getElementById('searchInput').value)">候補を見る</button>
-      <select id="targetSelect">
-        <option value="">対象を選択</option>
-        <option value="教員">教員</option>
-        <option value="保護者">保護者</option>
-        <option value="子ども">子ども</option>
-        <option value="情報発信者">情報発信者</option>
-      </select>
-      <select id="channelSelect">
-        <option value="">チャンネルを選択</option>
-        <option value="本">教育の博士</option>
-        <option value="裏">本音の燃えかす</option>
-        <option value="記録">副業実験のSF</option>
-      </select>
-      <button class="search-button-actual"
-        onclick="search('searchInput','targetSelect','channelSelect','resultArea')">検索</button>
-    </div>
-    <div id="suggestions"></div>
-    <div id="loading" style="display:none;">読み込み中...</div>
-    <!-- 🔽 検索結果表示エリア -->
-    <div id="resultArea"></div>
-    <script>
-      let data = [];
-      let keywordList = [];
-      const JSON_URL = "https://script.google.com/macros/s/AKfycbysHVUskI0Q5gj-FLdqFQUg2AsuGriZvKo-Zp6l59VKXMXY4SRIxRwXqlSHL5DbXeOFCw/exec";
-
-      async function loadData() {
-        document.getElementById('loading').style.display = 'block';
-        try {
-          const res = await fetch(JSON_URL);
-          data = await res.json();
-          keywordList = [...new Set(data.flatMap(item => item.keywords?.split(';') || []))];
-        } catch (e) {
-          console.error("データの読み込みに失敗しました", e);
-        }
-        document.getElementById('loading').style.display = 'none';
-      }
-
-      function suggestKeywords(input) {
-        const suggestionBox = document.getElementById('suggestions');
-        suggestionBox.innerHTML = "";
-        if (!input || input.length < 2) return;
-        const suggestions = keywordList.filter(k => k.toLowerCase().includes(input.toLowerCase())).slice(0, 5);
-        suggestions.forEach(k => {
-          const el = document.createElement("div");
-          el.textContent = k;
-          el.className = "suggestion-item";
-          el.onclick = () => {
-            document.getElementById('searchInput').value = k;
-            suggestionBox.innerHTML = "";
-          };
-          suggestionBox.appendChild(el);
-        });
-      }
-
-      function search(inputId, selectId, channelId, resultId) {
-        const keyword = document.getElementById(inputId).value.toLowerCase();
-        const target = document.getElementById(selectId).value;
-        const channel = document.getElementById(channelId).value;
-        const results = document.getElementById(resultId);
-        results.innerHTML = "";
-        document.getElementById('loading').style.display = 'block';
-
-        const filtered = data.filter(item => {
-          const keywords = item.keywords?.toLowerCase().split(";") || [];
-          const matchKeyword = keyword === "" || keywords.some(k => k.includes(keyword));
-          const matchTarget = target === "" || (item.target?.includes(target));
-          const matchChannel = channel === "" || (item.channel === channel);
-          return matchKeyword && matchTarget && matchChannel;
-        });
-
-        const displayItems = filtered.length > 10
-          ? filtered.sort(() => 0.5 - Math.random()).slice(0, 10)
-          : filtered;
-
-        document.getElementById('loading').style.display = 'none';
-
-        if (displayItems.length === 0) {
-          results.innerHTML = `
-        <p class="no-hit">該当するコンテンツが見つかりませんでした。</p>
-        <p class="suggestion">他のキーワードや対象を試してみてください。</p>
-      `;
-          return;
-        }
-
-        displayItems.forEach(item => {
-          const el = document.createElement("div");
-          el.className = "item-detail";
-          el.innerHTML = `
-        <a href="${item.url}" class="button note-button" target="_blank">${item.title}</a>
-        <div class="summary">${item.summary || "（要約なし）"}</div>
-      `;
-          results.appendChild(el);
-        });
-      }
-
-      window.onload = loadData;
-    </script>
   </header>
 
   <section id="section1">
     <h1>マッチ博士の教室ー名無しマッチによる教育のホントー</h1>
-    <p>ベテラン元教員・名無しマッチの実体験や経験則による教育・子育て・学習のアレコレ</p>
+    <p>ここは、教育と子育てにまつわる“リアル”をわかりやすく届ける場所です。<br>
+      20年以上の教員経験と、教育委員会での勤務経験をもとに、学校では語られにくい話や、子どもとの関わりで見えてきた気づき、学習を楽しむヒントなどを発信中。<br>
+      理論と実体験をつなぎながら、保護者や先生たちの「明日からの一歩」に寄り添う情報を届けます。
+    </p>
     <div class="channel-link">
       <a class="button with-icon" href="articles/aigakusyu.html">
         ChatGPTは英語学習をどう変えるのか？
       </a>
-      <p class="channel-desc">AIは“英語を話す相手”になれるのか？</p>
+      <p class="channel-desc">
+        ChatGPTの音声対話機能は、英語を“話す”練習の相手として注目されています。<br>
+        話す機会が少ない中高生にとって、AIとのやり取りは心理的ハードルを下げ、日常の中で自然に英語に触れる新しい方法に。<br>
+        教材作成や学習環境の設計にも活用が進み、教師や保護者の役割も変わりつつあります。
+      </p>
     </div>
     <div class="channel-link">
       <a class="button with-icon" href="#/sub/index.html">
@@ -192,8 +97,7 @@
     </div>
   </section>
   <section id="line">
-    <h2>LINEで学習サポート・無料配布中</h2>
-    <p>LINE登録で、教育テンプレやnote限定記事を無料プレゼント中！</p>
+    <p>LINEで学習サポート・無料配布中</p>
     <a class="button" href="https://lin.ee/7teX4nMG" target="_blank">LINEで登録する</a>
   </section>
   <section id="section3">
@@ -211,23 +115,7 @@
           href="https://note.com/nameless_match/n/n9f37bd411063">📊「体育＝苦手」は誰が作った？クロール25mの“評価”から考える、できたを育てる授業</a></li>
     </ul>
   </section>
-  <!-- 🔖 フック付きおすすめ記事リンク -->
-  <section id="section5">
-    <h2>📖 おすすめ記事</h2>
-    <a class="button note-button" href="https://note.com/nameless_match/n/nf894c36e45e0">🧠 注意しても治らない忘れ物の正体とは？</a>
-    <a class="button note-button" href="https://note.com/nameless_match/n/n680c8fa675a3">⏱ “早くしなさい”が子どもに与える意外な影響</a>
-    <a class="button note-button" href="https://note.com/nameless_match/n/n44803de54d31">😠 なぜ子どもは怒っても反省しないのか？</a>
-    <a class="button note-button" href="https://note.com/nameless_match/n/nb217251374b0">💬 学力が伸びる子の“親の声かけ”とは？</a>
-    <a class="button note-button" href="https://note.com/nameless_match/n/nedc123b600ef">🚀 やる気ゼロでも動ける“脳の習慣術”</a>
-  </section>
-  <!-- 📚 マガジンリンク -->
-  <section id="section6">
-    <h2>📚 マガジン一覧</h2>
-    <a class="button note-button" href="https://note.com/nameless_match/m/m0abae77951d5">👨‍👩‍👧‍👦
-      家庭と子育ての“もやもや”を照らす</a>
-    <a class="button note-button" href="https://note.com/nameless_match/m/m82b490abcdbf">💡《ひとさじの灯り》──教育と気づきのnote</a>
-    <a class="button note-button" href="https://note.com/nameless_match/m/m0d14d1624f98">🤖《AIが黒板に立つ日》──AIと学びのこれから</a>
-  </section>
+
   <!-- 📝 ご相談フォーム -->
   <section id="section7">
     <h2>📨 ご意見・ご相談はこちら</h2>
@@ -248,8 +136,8 @@
         <li><a href="/parent.html">保護者関係</a></li>
         <li><a href="/about.html">運営者情報</a></li>
         <li><a href="https://note.com/nameless_match">note</a></li>
-        <li><a href="https://x.com/namelessmatch">X</a></li>
-        <li><a href="https://www.youtube.com/@kasu_report">YouTube</a></li>
+        <li><a href="https://x.com/shirutera_com">X</a></li>
+        <li><a href="https://www.youtube.com/@shirutera">YouTube</a></li>
       </ul>
     </nav>
     <small>© 2025 シルテラ – SHIRUTERA / #名無しマッチ 教育メディア</small>
