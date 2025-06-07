@@ -1,0 +1,229 @@
+/* Shirutera 共通スタイル - style.css */
+
+:root {
+  --color-primary: #3fa9f5;
+  --color-secondary: #8ed6fb;
+  --color-bg-light: #ffffff;
+  --color-bg-dark: #222;
+  --color-surface: #f9fbff;
+  --color-text-main: #333;
+  --color-text-invert: #fff;
+  --color-border: #ddd;
+  --color-success: #00c300;
+  --color-warning: #ff9800;
+  --color-error: #f44336;
+  --color-info: #2196f3;
+  --color-shadow: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0.5em 1em 2em;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5em;
+  margin: 1em 0;
+  box-shadow: 0 4px 8px var(--color-shadow);
+  text-align: center;
+}
+
+.card h2 {
+  margin-top: 0;
+  color: var(--color-primary);
+}
+
+.section--hero {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-top: 1.25em;
+  color: var(--color-text-invert);
+  border: none;
+}
+
+.btn--line {
+  background: linear-gradient(to right, #00e676, #00c300);
+}
+
+.btn--note {
+  background: linear-gradient(to right, var(--color-secondary), var(--color-primary));
+}
+
+.btn svg {
+  vertical-align: middle;
+  margin-right: 0.5em;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.text-center {
+  text-align: center;
+}
+
+header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.25rem;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.search-box input {
+  padding: 0.5em;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1em;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+footer {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-invert);
+  text-align: center;
+  padding: 1.5em 1em;
+  margin-top: 2em;
+}
+
+footer small {
+  font-size: 0.875em;
+}
+
+/* ========== ヘッダー：nav--main ========== */
+
+.nav--main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  gap: 0.5em;
+  flex-wrap: nowrap;
+}
+
+.nav--main__logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  flex: 0 0 auto;
+}
+
+.nav--main__search-box {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.nav--main__search-box input {
+  max-width: 120px;
+  width: 100%;
+  padding: 0.4em 0.6em;
+  font-size: 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.nav--main__toggle {
+  flex: 0 0 auto;
+  display: none;
+}
+
+.nav--main__toggle .menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.nav--main__menu {
+  display: flex;
+  gap: 1em;
+  margin-left: 1em;
+}
+
+.nav--main__menu a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* モバイル対応：768px未満で☰表示、ナビは非表示（開閉式） */
+@media (max-width: 768px) {
+  .nav--main {
+    flex-wrap: wrap;
+  }
+
+  .nav--main__toggle {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav--main__menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding: 1em;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .nav--main__menu.show {
+    display: flex;
+  }
+
+  .nav--main__search-box {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5em;
+  }
+}
