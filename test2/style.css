@@ -220,10 +220,11 @@ footer small {
     display: flex;
   }
 
-  .nav--main__search-box {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-    margin-top: 0.5em;
-  }
+.nav--main__search-box {
+  order: 0; /* 必要なければ削除でもOK */
+  width: auto;
+  margin-top: 0;
+  margin-left: 7%; /* 👈 ロゴと干渉しないよう少し右に寄せる */
+  flex-shrink: 1;
+  flex-grow: 0;
 }
