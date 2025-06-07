@@ -1,0 +1,204 @@
+/* Shirutera 共通スタイル - style.css（モバイルファースト対応） */
+
+:root {
+  --color-primary: #3fa9f5;
+  --color-secondary: #8ed6fb;
+  --color-bg-light: #ffffff;
+  --color-bg-dark: #222;
+  --color-surface: #f9fbff;
+  --color-text-main: #333;
+  --color-text-invert: #fff;
+  --color-border: #ddd;
+  --color-success: #00c300;
+  --color-warning: #ff9800;
+  --color-error: #f44336;
+  --color-info: #2196f3;
+  --color-shadow: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  font-family: sans-serif;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0.5em 1em 2em;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5em;
+  margin: 1em 0;
+  box-shadow: 0 4px 8px var(--color-shadow);
+  text-align: center;
+}
+
+.card h2 {
+  margin-top: 0;
+  color: var(--color-primary);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-top: 1.25em;
+  color: var(--color-text-invert);
+  border: none;
+}
+
+.btn--line {
+  background: linear-gradient(to right, #00e676, #00c300);
+}
+
+.btn--note {
+  background: linear-gradient(to right, var(--color-secondary), var(--color-primary));
+}
+
+.btn svg {
+  vertical-align: middle;
+  margin-right: 0.5em;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ===== ヘッダー（モバイルファースト） ===== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75em 1em;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 4px var(--color-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-right: 1em;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.search-box input {
+  padding: 0.4em 0.75em;
+  font-size: 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  max-width: 150px;
+}
+
+.search-box button {
+  padding: 0.4em 0.75em;
+  font-size: 0.85rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 1em;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+/* ===== PC向けレスポンシブレイアウト ===== */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--color-surface);
+    padding: 1em;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .search-box {
+    margin-top: 0.5em;
+  }
+
+  header {
+    flex-wrap: wrap;
+  }
+}
+
+/* ===== フッター ===== */
+footer {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-invert);
+  text-align: center;
+  padding: 1.5em 1em;
+  margin-top: 2em;
+}
+
+footer small {
+  font-size: 0.875em;
+}
+
