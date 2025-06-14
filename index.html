@@ -217,82 +217,89 @@
     <!-- 🔽 検索結果表示エリア -->
     <div id="resultArea"></div>
     <script>
-      let data = [];
-      let keywordList = [];
-      const JSON_URL = "https://script.google.com/macros/s/AKfycbyZTCuBz-KGecRRacqUQQoOtHuYVMwoBawi95SUsdUE0w-f6UZWDDf0FthKfIGRV9_gUg/exec";
+  let data = [];
+  let keywordList = [];
+  const JSON_URL = "https://script.google.com/macros/s/AKfycbyZTCuBz-KGecRRacqUQQoOtHuYVMwoBawi95SUsdUE0w-f6UZWDDf0FthKfIGRV9_gUg/exec?mode=all";
 
-      async function loadData() {
-        document.getElementById('loading').style.display = 'block';
-        try {
-          const res = await fetch(JSON_URL);
-          data = await res.json();
-          keywordList = [...new Set(data.flatMap(item => item.keywords?.split(';') || []))];
-        } catch (e) {
-          console.error("データの読み込みに失敗しました", e);
-        }
-        document.getElementById('loading').style.display = 'none';
-      }
+  async function loadData() {
+    document.getElementById('loading').style.display = 'block';
+    try {
+      const res = await fetch(JSON_URL);
+      data = await res.json();
+      keywordList = [...new Set(data.flatMap(item => item["キーワード"]?.split(',') || []))];
+    } catch (e) {
+      console.error("データの読み込みに失敗しました", e);
+    }
+    document.getElementById('loading').style.display = 'none';
+  }
 
-      function suggestKeywords(input) {
-        const suggestionBox = document.getElementById('suggestions');
+  function suggestKeywords(input) {
+    const suggestionBox = document.getElementById('suggestions');
+    suggestionBox.innerHTML = "";
+    if (!input || input.length < 2) return;
+
+    const suggestions = keywordList.filter(k =>
+      k.toLowerCase().includes(input.toLowerCase())
+    ).slice(0, 5);
+
+    suggestions.forEach(k => {
+      const el = document.createElement("div");
+      el.textContent = k;
+      el.className = "suggestion-item";
+      el.onclick = () => {
+        document.getElementById('searchInput').value = k;
         suggestionBox.innerHTML = "";
-        if (!input || input.length < 2) return;
-        const suggestions = keywordList.filter(k => k.toLowerCase().includes(input.toLowerCase())).slice(0, 5);
-        suggestions.forEach(k => {
-          const el = document.createElement("div");
-          el.textContent = k;
-          el.className = "suggestion-item";
-          el.onclick = () => {
-            document.getElementById('searchInput').value = k;
-            suggestionBox.innerHTML = "";
-          };
-          suggestionBox.appendChild(el);
-        });
-      }
+      };
+      suggestionBox.appendChild(el);
+    });
+  }
 
-      function search(inputId, selectId, channelId, resultId) {
-        const keyword = document.getElementById(inputId).value.toLowerCase();
-        const target = document.getElementById(selectId).value;
-        const channel = document.getElementById(channelId).value;
-        const results = document.getElementById(resultId);
-        results.innerHTML = "";
-        document.getElementById('loading').style.display = 'block';
+  function search(inputId, selectId, channelId, resultId) {
+    const keyword = document.getElementById(inputId).value.toLowerCase();
+    const target = document.getElementById(selectId).value;
+    const channel = document.getElementById(channelId).value;
+    const results = document.getElementById(resultId);
+    results.innerHTML = "";
+    document.getElementById('loading').style.display = 'block';
 
-        const filtered = data.filter(item => {
-          const keywords = item.keywords?.toLowerCase().split(";") || [];
-          const matchKeyword = keyword === "" || keywords.some(k => k.includes(keyword));
-          const matchTarget = target === "" || (item.target?.includes(target));
-          const matchChannel = channel === "" || (item.channel === channel);
-          return matchKeyword && matchTarget && matchChannel;
-        });
+    const filtered = data.filter(item => {
+      const rawKeywords = item["キーワード"] || "";
+      const keywords = rawKeywords.toLowerCase().split(",").map(k => k.trim()).filter(Boolean);
 
-        const displayItems = filtered.length > 10
-          ? filtered.sort(() => 0.5 - Math.random()).slice(0, 10)
-          : filtered;
+      const matchKeyword = keyword === "" || keywords.some(k => k.includes(keyword));
+      const matchTarget = target === "" || (item["対象"] || "").includes(target);
+      const matchChannel = channel === "" || (item["チャンネル"] || "") === channel;
+      return matchKeyword && matchTarget && matchChannel;
+    });
 
-        document.getElementById('loading').style.display = 'none';
+    const displayItems = filtered.length > 10
+      ? filtered.sort(() => 0.5 - Math.random()).slice(0, 10)
+      : filtered;
 
-        if (displayItems.length === 0) {
-          results.innerHTML = `
+    document.getElementById('loading').style.display = 'none';
+
+    if (displayItems.length === 0) {
+      results.innerHTML = `
         <p class="no-hit">該当するコンテンツが見つかりませんでした。</p>
         <p class="suggestion">他のキーワードや対象を試してみてください。</p>
       `;
-          return;
-        }
+      return;
+    }
 
-        displayItems.forEach(item => {
-          const el = document.createElement("div");
-          el.className = "item-detail";
-          el.innerHTML = `
-        <a href="${item.url}" class="button note-button" target="_blank">${item.title}</a>
-        <div class="summary">${item.summary || "（要約なし）"}</div>
+    displayItems.forEach(item => {
+      const el = document.createElement("div");
+      el.className = "item-detail";
+      el.innerHTML = `
+        <a href="${item["URL"]}" class="button note-button" target="_blank">${item["タイトル"]}</a>
+        <div class="summary">${item["要約"] || "（要約なし）"}</div>
       `;
-          results.appendChild(el);
-        });
-      }
+      results.appendChild(el);
+    });
+  }
 
-      window.onload = loadData;
-    </script>
+  window.onload = loadData;
+</script>
+
   </section>
   <section id="section6">
     <h2>悩みから探す</h2>
