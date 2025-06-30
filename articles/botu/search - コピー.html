@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>検索結果 - Shirutera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+</head>
+
+<body class="is-preload">
+
+  <!-- Headerなどはテンプレから共通部分を流用 -->
+
+  <div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+
+        <!-- Header -->
+        <header id="header">
+          <a href="index.html" class="logo"><strong>Shirutera―シルテラ</strong> produced by 名無しマッチ</a>
+          <ul class="icons">
+            <li><a href="https://x.com/namelessmatch" class="icon brands fa-twitter"><span
+                  class="label">Twitter</span></a></li>
+            <li><a href="https://www.youtube.com/channel/UCyQQkGh3A6Kcm6WgT6KKYIw" class="icon brands fa-youtube"><span
+                  class="label">YouTube</span></a></li>
+
+            <li><a href="https://www.instagram.com/nameless.match/" class="icon brands fa-instagram"><span
+                  class="label">Instagram</span></a></li>
+            <li>
+              <a href="https://note.com/nameless_match" target="_blank">
+                <img src="https://note.com/favicon.ico" alt="note" style="height: 1.3em; vertical-align: middle;">
+              </a>
+            </li>
+            <li>
+              <a href="https://www.tiktok.com/@nameless.match" class="icon brands fa-tiktok" target="_blank">
+                <span class="label">TikTok</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:official.matchlab@gmail.com" class="icon solid fa-envelope">
+                <span class="label">Email</span>
+              </a>
+            </li>
+            <!-- 燃えかすブログ（はてなブログ） -->
+            <li>
+              <a href="https://match-kasu.hateblo.jp/" class="icon solid fa-blog" target="_blank">
+                <span class="label">Blog</span>
+              </a>
+            </li>
+
+            <!-- 小説（カクヨム） -->
+            <li>
+              <a href="https://kakuyomu.jp/users/matchlab" class="icon solid fa-book-open" target="_blank">
+                <span class="label">Kakuyomu</span>
+              </a>
+            </li>
+
+            <li><a href="https://lin.ee/7teX4nMG" target="_blank">公式ＬＩＮＥ</a></li>
+          </ul>
+        </header>
+
+        <!-- Main -->
+        <div id="main" class="wrapper">
+          <div class="inner">
+            <h1>🔍 検索結果</h1>
+            <p id="query-label"></p>
+            <ul id="search-result" class="mini-posts"></ul>
+          </div>
+        </div>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", async () => {
+            const params = new URLSearchParams(window.location.search);
+            const query = params.get("q");
+            const label = document.getElementById("query-label");
+            const list = document.getElementById("search-result");
+
+            if (!query) {
+              label.textContent = "キーワードが指定されていません。";
+              return;
+            }
+
+            label.textContent = `「${query}」の検索結果を表示しています。`;
+
+            const url = `https://script.google.com/macros/s/AKfycbx6Xc-q55Ui8yfP34Il3APnEzQQwwjVRTMzYNwRCw_mX2MveXs0jIJJPWx7ZMv8UTocrg/exec?mode=search&query=${encodeURIComponent(query)}`;
+
+            try {
+              const res = await fetch(url);
+              const data = await res.json();
+
+              if (data.length === 0) {
+                list.innerHTML = "<li>該当するコンテンツが見つかりませんでした。</li>";
+                return;
+              }
+
+              data.forEach(item => {
+                const li = document.createElement("li");
+                const article = document.createElement("article");
+
+                const h3 = document.createElement("h3");
+                h3.textContent = item.タイトル || "（無題）";
+
+                const p = document.createElement("p");
+                p.textContent = item.要約 || "";
+
+                const a = document.createElement("a");
+                a.href = item.URL || "#";
+                a.className = "button";
+                a.target = "_blank";
+                a.textContent = "続きを読む";
+
+                article.appendChild(h3);
+                article.appendChild(p);
+                article.appendChild(a);
+                li.appendChild(article);
+                list.appendChild(li);
+              });
+
+            } catch (err) {
+              console.error("検索エラー:", err);
+              list.innerHTML = "<li>検索中にエラーが発生しました。</li>";
+            }
+          });
+        </script>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+          <div class="inner">
+
+            <!-- Search -->
+            <section id="search" class="alt">
+              <form method="post" action="#">
+                <input type="text" name="query" id="query" placeholder="Search" />
+              </form>
+            </section>
+
+            <!-- Menu -->
+            <nav id="menu">
+              <header class="major">
+                <h2>Menu</h2>
+              </header>
+              <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/articles/about">自己紹介</a></li>
+                <li>
+                  <a href="https://lin.ee/7teX4nMG" target="_blank">
+                    LINEで友だち登録
+                  </a>
+                </li>
+
+                <li>
+                  <span class="opener">立場から記事を探す</span>
+                  <ul>
+                    <li><a href="/articles/teacher.html">教員・教育関係者向け</a></li>
+                    <li><a href="/articles/parent">保護者向け</a></li>
+                    <li><a href="/articles/student.html">小中高生向け</a></li>
+                    <li><a href="/articles/self.html">自己改善・副業情報</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="opener">キャラごとに探す</span>
+                  <ul>
+                    <li><a href="https://note.com/nameless_match" target="_blank">マッチ博士（教育情報）</a></li>
+                    <li><a href="https://note.com/match_kasu" target="_blank">燃えかすマッチ（教育裏事情）</a></li>
+                    <li><a href="https://note.com/kasu_report" target="_blank">SFマッチ（副業・ライフハック）</a></li>
+                    <li><a href="https://store.line.me/stickershop/author/5347645/ja"
+                        target="_blank">マッチくん（LINEスタンプ）</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="opener">悩みから探す</span>
+                  <ul>
+                    <li><a href="/articles/habit.html">学習習慣の作り方</a></li>
+                    <li><a href="/articles/mental">子どものメンタルケア</a></li>
+                    <li><a href="/articles/family.html"></a>スマホ・ゲーム依存対策</a></li>
+                    <li><a href="/articles/homework.html">宿題・やる気の悩み</a></li>
+                    <li><a href="/articles/family.html">子育ての悩み</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="opener">note記事集（マガジン）</span>
+                  <ul>
+                    <li><a href="https://note.com/nameless_match/m/m0abae77951d5" target="_blank">家庭と子育ての”もやもや”を照らす</a>
+                    </li>
+                    <li><a href="https://note.com/nameless_match/m/m82b490abcdbf"
+                        target="_blank">《ひとさじの灯り》――教育と気づきのnote</a></li>
+                    <li><a href="https://note.com/nameless_match/m/m0d14d1624f98"
+                        target="_blank"></a>《AIが黒板に立つ日》――AIとこれからの学びのこれから</li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="opener">SNS</span>
+                  <ul>
+                    <li><a href="https://x.com/namelessmatch" target="_blank">X（旧Twitter）</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCyQQkGh3A6Kcm6WgT6KKYIw" target="_blank">YouTube</a>
+                    </li>
+                    <li><a href="https://www.instagram.com/nameless.match/" target="_blank">Instagram</a>
+                    </li>
+                    <li><a href="https://note.com/nameless_match" target="_blank">note</a></li>
+                    <li><a href="https://www.tiktok.com/@nameless.match" target="_blank">TikTok</a></li>
+                    <li>
+                      <a href="https://lin.ee/7teX4nMG" target="_blank">
+                        LINE公式
+                      </a>
+                    </li>
+
+                    <li><a href="mailto:official.matchlab@gmail.com">Email</a></li>
+                    <li><a href="https://match-kasu.hateblo.jp/" target="_blank">燃えかすブログ</a></li>
+                    <li><a href="https://kakuyomu.jp/users/matchlab" target="_blank">カクヨム（小説）</a></li>
+                  </ul>
+                </li>
+
+                <li><a href="https://forms.gle/erZkcXnKRJ9obuT1A" target="_blank">１分アンケート・ご感想</a></li>
+              </ul>
+            </nav>
+
+            <!-- Section -->
+            <section>
+              <header class="major">
+                <h2>人気記事３選</h2>
+              </header>
+              <div class="mini-posts">
+                <article>
+                  <a href="https://note.com/nameless_match/n/nc6696f4ab49d" target="_blank">
+                    <p>意味調べを”授業”にする――文脈理解・説明力集団心理を活かす方法</p>
+                  </a>
+                </article>
+                <article>
+                  <a href="https://note.com/nameless_match/n/n8a09084b87ee" target="_blank">
+                    <p>自宅学習の最適化：効率的に学べるオンライン学習ツール</p>
+                  </a>
+                </article>
+                <article>
+                  <a href="https://note.com/nameless_match/n/n9f37bd411063" target="_blank">
+                    <p>「体育＝苦手」は誰が作った？クロール２５ｍの”評価から考える、できたを育てる授業”</p>
+                  </a>
+                </article>
+              </div>
+              <ul class="actions">
+                <li><a href="https://note.com/nameless_match" class="button">ｎｏｔｅで学ぶ</a></li>
+              </ul>
+            </section>
+
+            <!-- Section -->
+            <section>
+              <header class="major">
+                <h2>ご連絡はこちらへ</h2>
+              </header>
+              <p>各種依頼は以下までお願いします</p>
+              <ul class="contact">
+                <li>
+                  <a href="mailto:official.matchlab@gmail.com" class="icon solid fa-envelope">
+                    official.matchlab@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a href="https://lin.ee/7teX4nMG" class="icon solid fa-comment-dots" target="_blank">
+
+                    official_LINE
+                  </a>
+                </li>
+
+
+                <li>
+                  <a href="https://shirutera.com" class="icon solid fa-home" target="_blank">
+                    https://shirutera.com
+                  </a>
+                </li>
+
+              </ul>
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+              <p class="copyright">
+                &copy; Shirutera（シルテラ）. All rights reserved.
+                一部コンテンツにはAmazon・楽天等のアフィリエイト広告を含みます。<br>
+                Design by <a href="https://html5up.net" target="_blank">HTML5 UP</a> / Images by <a
+                  href="https://unsplash.com" target="_blank">Unsplash</a>.
+              </p>
+            </footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+        <!-- テンプレのJS読み込み（必要に応じて） -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/custom.js"></script>
+</body>
+
+</html>
