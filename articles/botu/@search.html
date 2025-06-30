@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>検索結果 - Shirutera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+</head>
+
+<body class="is-preload">
+
+  <!-- Headerなどはテンプレから共通部分を流用 -->
+
+  <div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+
+        <!-- Header -->
+        <header id="header">
+          <a href="index.html" class="logo"><strong>Shirutera―シルテラ</strong> produced by 名無しマッチ</a>
+          <ul class="icons">
+            <li><a href="https://x.com/namelessmatch" class="icon brands fa-twitter"><span
+                  class="label">Twitter</span></a></li>
+            <li><a href="https://www.youtube.com/channel/UCyQQkGh3A6Kcm6WgT6KKYIw" class="icon brands fa-youtube"><span
+                  class="label">YouTube</span></a></li>
+
+            <li><a href="https://www.instagram.com/nameless.match/" class="icon brands fa-instagram"><span
+                  class="label">Instagram</span></a></li>
+            <li>
+              <a href="https://note.com/nameless_match" target="_blank">
+                <img src="https://note.com/favicon.ico" alt="note" style="height: 1.3em; vertical-align: middle;">
+              </a>
+            </li>
+            <li>
+              <a href="https://www.tiktok.com/@nameless.match" class="icon brands fa-tiktok" target="_blank">
+                <span class="label">TikTok</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:official.matchlab@gmail.com" class="icon solid fa-envelope">
+                <span class="label">Email</span>
+              </a>
+            </li>
+            <!-- 燃えかすブログ（はてなブログ） -->
+            <li>
+              <a href="https://match-kasu.hateblo.jp/" class="icon solid fa-blog" target="_blank">
+                <span class="label">Blog</span>
+              </a>
+            </li>
+
+            <!-- 小説（カクヨム） -->
+            <li>
+              <a href="https://kakuyomu.jp/users/matchlab" class="icon solid fa-book-open" target="_blank">
+                <span class="label">Kakuyomu</span>
+              </a>
+            </li>
+
+            <li><a href="https://lin.ee/7teX4nMG" target="_blank">公式ＬＩＮＥ</a></li>
+          </ul>
+        </header>
+
+        <!-- Main -->
+        <div id="main" class="wrapper">
+          <div class="inner">
+            <h1>🔍 検索結果</h1>
+            <p id="query-label"></p>
+            <ul id="search-result" class="mini-posts"></ul>
+          </div>
+        </div>
+        <script>
+          // URLパラメータからクエリを拾ってセット（searchInput）
+          const params = new URLSearchParams(window.location.search);
+          const query = params.get("query");
+          if (query) {
+            document.getElementById("searchInput").value = decodeURIComponent(query);
+            search(); // 自動実行
+          }
+        </script>
+
+        <!-- 検索フォーム -->
+        <section>
+          <h2>🔍 記事を検索</h2>
+          <div class="fields">
+            <div class="field">
+              <label for="searchInput">キーワード</label>
+              <input type="text" id="searchInput" name="search" placeholder="例：スマホ 習慣 教員" onkeyup="suggestKeywords()" />
+              <div id="suggestions" class="suggestions-box"></div>
+            </div>
+
+            <div class="field">
+              <label for="targetSelect">対象</label>
+              <select id="targetSelect">
+                <option value="">すべて</option>
+                <option value="教員">教員</option>
+                <option value="保護者">保護者</option>
+                <option value="子ども">子ども</option>
+                <option value="自己改善">自己改善</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="channelSelect">チャンネル</label>
+              <select id="channelSelect">
+                <option value="">すべて</option>
+                <option value="本">本</option>
+                <option value="裏">裏</option>
+                <option value="記録">記録</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <button onclick="search()">検索する</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 検索結果表示 -->
+        <div id="loading" style="display: none;">読み込み中...</div>
+        <div id="resultArea"></div>
+
+        <!-- 検索JS（最小限必要なもの） -->
+        <script>
+          let data = [];
+
+          function loadData() {
+            document.getElementById("loading").style.display = "block";
+            fetch("https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec?mode=all")
+              .then(response => response.json())
+              .then(json => {
+                data = json;
+                document.getElementById("loading").style.display = "none";
+              });
+          }
+
+          function suggestKeywords() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const suggestions = document.getElementById("suggestions");
+            suggestions.innerHTML = "";
+
+            if (!input) return;
+
+            const keywords = [...new Set(data.flatMap(item =>
+              Object.values(item)
+                .filter(v => typeof v === "string")
+                .flatMap(v => v.split(/[\s,、。・]+/))
+            ))];
+
+            const filtered = keywords.filter(k => k && k.toLowerCase().includes(input)).slice(0, 5);
+
+            filtered.forEach(k => {
+              const div = document.createElement("div");
+              div.className = "suggestion";
+              div.textContent = k;
+              div.onclick = () => {
+                document.getElementById("searchInput").value = k;
+                suggestions.innerHTML = "";
+                search();
+              };
+              suggestions.appendChild(div);
+            });
+          }
+
+          function search() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const target = document.getElementById("targetSelect").value;
+            const channel = document.getElementById("channelSelect").value;
+
+            const results = data.filter(item => {
+              const keywordMatch = Object.values(item).some(v =>
+                typeof v === "string" && v.toLowerCase().includes(query)
+              );
+              const targetMatch = !target || (item.対象 && item.対象.includes(target));
+              const channelMatch = !channel || (item.チャンネル && item.チャンネル.includes(channel));
+              return keywordMatch && targetMatch && channelMatch;
+            });
+
+            const resultArea = document.getElementById("resultArea");
+            resultArea.innerHTML = "";
+
+            if (results.length === 0) {
+              resultArea.innerHTML = "<p>見つかりませんでした。</p>";
+              return;
+            }
+
+            results.slice(0, 10).forEach(item => {
+              const div = document.createElement("div");
+              div.className = "mini-post";
+              div.innerHTML = `
+        <a href="${item.URL}" class="image"><img src="images/thumb.jpg" alt="" /></a>
+        <div class="content">
+          <a href="${item.URL}"><h3>${item.タイトル}</h3></a>
+          <p>${item.要約}</p>
+        </div>
+      `;
+              resultArea.appendChild(div);
+            });
+          }
+
+          window.onload = loadData;
+        </script>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+          <div class="inner">
+
+            <!-- Search -->
+            <section id="search" class="alt">
+              <form method="post" action="#">
+                <input type="text" name="query" id="query" placeholder="Search" />
+              </form>
+            </section>
+
+            <!-- Menu -->
+            <nav id="menu">
+              <header class="major">
+                <h2>Menu</h2>
+              </header>
+              <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/articles/about">自己紹介</a></li>
+                <li>
+                  <a href="https://lin.ee/7teX4nMG" target="_blank">
+                    LINEで友だち登録
+                  </a>
+                </li>
+
+                <li>
+                  <span class="opener">立場から記事を探す</span>
+                  <ul>
+                    <li><a href="/articles/teacher.html">教員・教育関係者向け</a></li>
+                    <li><a href="/articles/parent">保護者向け</a></li>
+                    <li><a href="/articles/student.html">小中高生向け</a></li>
+                    <li><a href="/articles/self.html">自己改善・副業情報</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="opener">キャラごとに探す</span>
+                  <ul>
+                    <li><a href="https://note.com/nameless_match" target="_blank">マッチ博士（教育情報）</a></li>
+                    <li><a href="https://note.com/match_kasu" target="_blank">燃えかすマッチ（教育裏事情）</a></li>
+                    <li><a href="https://note.com/kasu_report" target="_blank">SFマッチ（副業・ライフハック）</a></li>
+                    <li><a href="https://store.line.me/stickershop/author/5347645/ja"
+                        target="_blank">マッチくん（LINEスタンプ）</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="opener">悩みから探す</span>
+                  <ul>
+                    <li><a href="/articles/habit.html">学習習慣の作り方</a></li>
+                    <li><a href="/articles/mental">子どものメンタルケア</a></li>
+                    <li><a href="/articles/family.html"></a>スマホ・ゲーム依存対策</a></li>
+                    <li><a href="/articles/homework.html">宿題・やる気の悩み</a></li>
+                    <li><a href="/articles/family.html">子育ての悩み</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="opener">note記事集（マガジン）</span>
+                  <ul>
+                    <li><a href="https://note.com/nameless_match/m/m0abae77951d5" target="_blank">家庭と子育ての”もやもや”を照らす</a>
+                    </li>
+                    <li><a href="https://note.com/nameless_match/m/m82b490abcdbf"
+                        target="_blank">《ひとさじの灯り》――教育と気づきのnote</a></li>
+                    <li><a href="https://note.com/nameless_match/m/m0d14d1624f98"
+                        target="_blank"></a>《AIが黒板に立つ日》――AIとこれからの学びのこれから</li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="opener">SNS</span>
+                  <ul>
+                    <li><a href="https://x.com/namelessmatch" target="_blank">X（旧Twitter）</a></li>
+                    <li><a href="https://www.youtube.com/channel/UCyQQkGh3A6Kcm6WgT6KKYIw" target="_blank">YouTube</a>
+                    </li>
+                    <li><a href="https://www.instagram.com/nameless.match/" target="_blank">Instagram</a>
+                    </li>
+                    <li><a href="https://note.com/nameless_match" target="_blank">note</a></li>
+                    <li><a href="https://www.tiktok.com/@nameless.match" target="_blank">TikTok</a></li>
+                    <li>
+                      <a href="https://lin.ee/7teX4nMG" target="_blank">
+                        LINE公式
+                      </a>
+                    </li>
+
+                    <li><a href="mailto:official.matchlab@gmail.com">Email</a></li>
+                    <li><a href="https://match-kasu.hateblo.jp/" target="_blank">燃えかすブログ</a></li>
+                    <li><a href="https://kakuyomu.jp/users/matchlab" target="_blank">カクヨム（小説）</a></li>
+                  </ul>
+                </li>
+
+                <li><a href="https://forms.gle/erZkcXnKRJ9obuT1A" target="_blank">１分アンケート・ご感想</a></li>
+              </ul>
+            </nav>
+
+            <!-- Section -->
+            <section>
+              <header class="major">
+                <h2>人気記事３選</h2>
+              </header>
+              <div class="mini-posts">
+                <article>
+                  <a href="https://note.com/nameless_match/n/nc6696f4ab49d" target="_blank">
+                    <p>意味調べを”授業”にする――文脈理解・説明力集団心理を活かす方法</p>
+                  </a>
+                </article>
+                <article>
+                  <a href="https://note.com/nameless_match/n/n8a09084b87ee" target="_blank">
+                    <p>自宅学習の最適化：効率的に学べるオンライン学習ツール</p>
+                  </a>
+                </article>
+                <article>
+                  <a href="https://note.com/nameless_match/n/n9f37bd411063" target="_blank">
+                    <p>「体育＝苦手」は誰が作った？クロール２５ｍの”評価から考える、できたを育てる授業”</p>
+                  </a>
+                </article>
+              </div>
+              <ul class="actions">
+                <li><a href="https://note.com/nameless_match" class="button">ｎｏｔｅで学ぶ</a></li>
+              </ul>
+            </section>
+
+            <!-- Section -->
+            <section>
+              <header class="major">
+                <h2>ご連絡はこちらへ</h2>
+              </header>
+              <p>各種依頼は以下までお願いします</p>
+              <ul class="contact">
+                <li>
+                  <a href="mailto:official.matchlab@gmail.com" class="icon solid fa-envelope">
+                    official.matchlab@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a href="https://lin.ee/7teX4nMG" class="icon solid fa-comment-dots" target="_blank">
+
+                    official_LINE
+                  </a>
+                </li>
+
+
+                <li>
+                  <a href="https://shirutera.com" class="icon solid fa-home" target="_blank">
+                    https://shirutera.com
+                  </a>
+                </li>
+
+              </ul>
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+              <p class="copyright">
+                &copy; Shirutera（シルテラ）. All rights reserved.
+                一部コンテンツにはAmazon・楽天等のアフィリエイト広告を含みます。<br>
+                Design by <a href="https://html5up.net" target="_blank">HTML5 UP</a> / Images by <a
+                  href="https://unsplash.com" target="_blank">Unsplash</a>.
+              </p>
+            </footer>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- テンプレのJS読み込み（必要に応じて） -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/custom.js"></script>
+</body>
+
+</html>
