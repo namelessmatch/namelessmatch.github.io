@@ -1,99 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://shirutera.com/articles/about.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/ailearning.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/family.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/habit.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/homework.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/mental.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/parent.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/private-sector-principal.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/school_refusal.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/search.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/self.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/smartphon.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/stamp.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/start.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/student.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shirutera.com/articles/teacher.html</loc>
-    <lastmod>2025-06-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+<url><loc>https://shirutera.com/articles/about.html</loc></url>
+<url><loc>https://shirutera.com/articles/ailearning.html</loc></url>
+<url><loc>https://shirutera.com/articles/consult.html</loc></url>
+<url><loc>https://shirutera.com/articles/family.html</loc></url>
+<url><loc>https://shirutera.com/articles/for-teacher/monster-parent-definition.html</loc></url>
+<url><loc>https://shirutera.com/articles/habit.html</loc></url>
+<url><loc>https://shirutera.com/articles/homework.html</loc></url>
+<url><loc>https://shirutera.com/articles/mental.html</loc></url>
+<url><loc>https://shirutera.com/articles/notehub/chelio.html</loc></url>
+<url><loc>https://shirutera.com/articles/notehub/cherio.html</loc></url>
+<url><loc>https://shirutera.com/articles/notehub/shinyateacher.html</loc></url>
+<url><loc>https://shirutera.com/articles/notehub/sumimi.html</loc></url>
+<url><loc>https://shirutera.com/articles/notehub/umi.html</loc></url>
+<url><loc>https://shirutera.com/articles/notehub.html</loc></url>
+<url><loc>https://shirutera.com/articles/parent.html</loc></url>
+<url><loc>https://shirutera.com/articles/private-sector-principal.html</loc></url>
+<url><loc>https://shirutera.com/articles/school_refusal.html</loc></url>
+<url><loc>https://shirutera.com/articles/search.html</loc></url>
+<url><loc>https://shirutera.com/articles/self.html</loc></url>
+<url><loc>https://shirutera.com/articles/smartphon.html</loc></url>
+<url><loc>https://shirutera.com/articles/stamp.html</loc></url>
+<url><loc>https://shirutera.com/articles/start.html</loc></url>
+<url><loc>https://shirutera.com/articles/student.html</loc></url>
+<url><loc>https://shirutera.com/articles/teacher.html</loc></url>
+<url><loc>https://shirutera.com/articles/trigger/index.html</loc></url>
+<url><loc>https://shirutera.com/articles/trigger/trigger1.html</loc></url>
 </urlset>
