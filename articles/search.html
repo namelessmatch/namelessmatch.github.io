@@ -77,7 +77,7 @@
 		}
 	</script>
 	<!-- ▼ 構造化データ：WebSite情報 -->
-<script type="application/ld+json">
+	<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -91,8 +91,8 @@
 }
 </script>
 
-<!-- ▼ 構造化データ：パンくずリスト -->
-<script type="application/ld+json">
+	<!-- ▼ 構造化データ：パンくずリスト -->
+	<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -186,7 +186,10 @@
 				<section id="results">
 					<div id="search-result"></div>
 				</section>
-
+				<section>
+					<h2>🆕 最新コンテンツ</h2>
+					<ul id="latest-list" class="mini-posts"></ul>
+				</section>
 				<script>
 					document.addEventListener("DOMContentLoaded", () => {
 						const params = new URLSearchParams(window.location.search);
