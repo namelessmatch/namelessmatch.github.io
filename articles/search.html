@@ -76,6 +76,43 @@
   			]
 		}
 	</script>
+	<!-- ▼ 構造化データ：WebSite情報 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Shirutera",
+  "url": "https://shirutera.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://shirutera.com/articles/search.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- ▼ 構造化データ：パンくずリスト -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ホーム",
+      "item": "https://shirutera.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "習慣化と家庭学習",
+      "item": "https://shirutera.com/articles/habit.html"
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body class="is-preload">
