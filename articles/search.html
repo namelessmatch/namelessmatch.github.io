@@ -169,19 +169,38 @@
 
 				<!-- 検索絞り込み -->
 				<div id="filters">
-					<select id="filter-種別">
+					<select id="filter-type">
 						<option value="">すべての種別</option>
+						<option value="記事">記事</option>
+						<option value="動画">動画</option>
 					</select>
-					<select id="filter-媒体">
+
+					<select id="filter-media">
 						<option value="">すべての媒体</option>
+						<option value="note">note</option>
+						<option value="YouTube">YouTube</option>
+						<option value="Shirutera">Shirutera</option>
 					</select>
-					<select id="filter-チャンネル">
+
+					<select id="filter-channel">
 						<option value="">すべてのチャンネル</option>
+						<option value="本">名無しマッチ</option>
+						<option value="裏">燃えかすマッチ</option>
+						<option value="記録">SFマッチ</option>
 					</select>
-					<select id="filter-対象">
+
+					<select id="filter-target">
 						<option value="">すべての対象</option>
+						<option value="教員">教員</option>
+						<option value="保護者">保護者</option>
+						<option value="子ども">子ども</option>
+						<option value="中高生">中高生</option>
+						<option value="副業志望者">副業志望者</option>
+						<option value="AI興味層">AI興味層</option>
+						<option value="情報発信者">情報発信者</option>
 					</select>
 				</div>
+
 
 				<!-- 検索結果 -->
 				<div id="search-results"></div>
@@ -208,18 +227,38 @@
 						let perPage = 10;
 
 						// 初期表示
-						container.innerHTML = "<li>検索中...</li>";
+						container.innerHTML = `
+						  <li>
+    						<div class="major">
+      						<h3>ただいま検索中です...しばらくお待ちください。最大で１０秒かかります。</h3>
+    						</div>
+  						  </li>
+						`;
+
 
 						fetch("https://script.google.com/macros/s/AKfycbxFblthbQMXLruzVhZAtljX_w1JP8rDxu8B-vv5G0JVeg523LQeFFG1hzG-GC9-UG9miw/exec?mode=all_combined")
 							.then(res => res.json())
 							.then(data => {
 								const searchableFields = ["タイトル", "種別", "媒体", "チャンネル", "対象", "要約", "キーワード"];
 
-								allResults = data.filter(item =>
-									searchableFields.some(field =>
+								allResults = data.filter(item => {
+									const matchesKeyword = searchableFields.some(field =>
 										normalize(item[field]).includes(normalize(query))
-									)
-								);
+									);
+
+									const selectedType = document.getElementById("filter-type").value;
+									const selectedMedia = document.getElementById("filter-media").value;
+									const selectedChannel = document.getElementById("filter-channel").value;
+									const selectedTarget = document.getElementById("filter-target").value;
+
+									const matchesType = !selectedType || item.種別 === selectedType;
+									const matchesMedia = !selectedMedia || item.媒体 === selectedMedia;
+									const matchesChannel = !selectedChannel || item.チャンネル === selectedChannel;
+									const matchesTarget = !selectedTarget || (item.対象 || "").includes(selectedTarget);
+
+									return matchesKeyword && matchesType && matchesMedia && matchesChannel && matchesTarget;
+								});
+
 
 
 
