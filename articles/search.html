@@ -259,6 +259,32 @@
 
 							});
 
+							function renderArticleCard(item) {
+								const link = document.createElement("a");
+								link.href = item.URL || "#";
+								link.target = "_blank";
+								link.className = "minipost"; // CSSスタイルそのまま使える！
+
+								// タイトル
+								const title = document.createElement("h3");
+								title.textContent = item.タイトル || "（タイトル未設定）";
+
+								// 種別・媒体・チャンネル
+								const info = document.createElement("p");
+								info.textContent = `📌 ${item.種別} / ${item.媒体} / ${item.チャンネル}`;
+
+								// 要約
+								const summary = document.createElement("p");
+								summary.textContent = item.要約 || "（要約はありません）";
+
+								// 要素をリンク内に追加
+								link.appendChild(title);
+								link.appendChild(info);
+								link.appendChild(summary);
+
+								return link;
+							}
+
 							currentPage++;
 							if (currentPage * perPage >= allResults.length) {
 								if (moreBtn) moreBtn.style.display = "none";
