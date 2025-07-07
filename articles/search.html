@@ -20,63 +20,40 @@
 	<!-- ▼ 基本設定 -->
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<title>Shiruteraーシルテラー“知るを照らす場所”｜教育と子育てに本質的なヒントを</title>
-	<meta name="description"
-		content="Shiruteraは、元教員が贈る“教育と子育ての本質”を伝えるメディアです。脳科学・心理学・教育現場の知見をもとに、学び・子育て・心の課題に科学的にアプローチします。" />
+	<title>Shirutera検索ページ｜教育と子育てに関する本質的な情報を探す</title>
+	<meta name="description" content="Shiruteraの全記事から、教育・心理・子育ての悩みにマッチする情報を検索できます。元教員の知見と科学に基づいた実践的ヒントを探しましょう。" />
 	<meta name="robots" content="index, follow" />
+
 	<!-- ▼ SNSシェア用OGP設定 -->
-	<meta property="og:title" content="シルテラ｜教育と心理の再現知メディア" />
-	<meta property="og:description" content="学習・不登校・発達・スマホ依存…すべての教育の悩みに“脳と心”から答える。元教員の知見で届ける知識ラボ。" />
-	<meta property="og:image" content="https://shirutera.com/images/habit.png" />
-	<meta property="og:url" content="https://shirutera.com/articles/habit.html" />
+	<meta property="og:title" content="Shirutera検索ページ｜教育と子育ての悩みを解決" />
+	<meta property="og:description" content="Shiruteraの全記事から、教育・心理・子育ての本質的ヒントを検索できます。学びたい人・悩んでいる人へ。" />
+	<meta property="og:image" content="https://shirutera.com/images/search.png" />
+	<meta property="og:url" content="https://shirutera.com/articles/search.html" />
 	<meta property="og:site_name" content="Shirutera" />
-	<meta property="og:type" content="article" />
+	<meta property="og:type" content="website" />
 	<meta property="og:locale" content="ja_JP" />
+
+	<!-- ▼ Canonical URL（重複防止） -->
+	<link rel="canonical" href="https://shirutera.com/articles/search.html" />
+
 	<!-- ▼ Twitterカード -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@nameless_match_" />
 	<meta name="twitter:creator" content="@nameless_match_" />
-	<!-- canonical（正規URL） -->
-	<link rel="canonical" href="https://shirutera.com/articles/habit.html" />
+
+	<!-- ▼ Canonical（正規URL） -->
+	<link rel="canonical" href="https://shirutera.com/articles/search.html" />
+
 	<!-- ▼ favicon・アイコン設定 -->
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" type="image/png" href="/favicon-32.png" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
 	<!-- ▼ フォントとCSS読み込み -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="/assets/css/main.css" />
-	<!-- ▼ 構造化データ：WebSite情報 -->
-	<script type="application/ld+json">
-		{
- 	 		"@context": "https://schema.org",
- 	 		"@type": "WebSite",
- 	 		"name": "Shirutera",
- 	 		"url": "https://shirutera.com/"
-		}
-	</script>
 
-	<!-- ▼ 構造化データ：パンくずリスト -->
-	<script type="application/ld+json">
-		{
-  			"@context": "https://schema.org",
- 			"@type": "BreadcrumbList",
-  			"itemListElement": [
-    	{
-     		"@type": "ListItem",
-      		"position": 1,
-     		"name": "ホーム",
-     		"item": "https://shirutera.com/"
-    	},
-    	{
-     		"@type": "ListItem",
-      		"position": 2,
-      		"name": "習慣化と家庭学習",
-      		"item": "https://shirutera.com/articles/habit.html"
-    	}
-  			]
-		}
-	</script>
-	<!-- ▼ 構造化データ：WebSite情報 -->
+	<!-- ▼ 構造化データ：WebSite情報（SearchAction付き） -->
 	<script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -91,7 +68,7 @@
 }
 </script>
 
-	<!-- ▼ 構造化データ：パンくずリスト -->
+	<!-- ▼ 構造化データ：パンくずリスト（検索ページ用） -->
 	<script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -106,12 +83,13 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "習慣化と家庭学習",
-      "item": "https://shirutera.com/articles/habit.html"
+      "name": "検索",
+      "item": "https://shirutera.com/articles/search.html"
     }
   ]
 }
 </script>
+
 
 </head>
 
@@ -171,73 +149,216 @@
 					</ul>
 				</header>
 
-				<section>
-					<h2>🔍 検索結果</h2>
-					<ul id="search-results" class="mini-posts"></ul>
-				</section>
 				<!-- 検索フォーム -->
-				<section id="search" class="alt">
+				<section id="search-main" class="search-box">
 					<form action="/articles/search.html" method="GET">
-						<input type="text" name="query" placeholder="検索キーワード" />
+						<!-- 検索キーワード -->
+						<label for="search-input">キーワード検索</label>
+						<input type="text" id="search-input" name="query" placeholder="検索キーワードを入力" value="" />
+
+						<!-- 絞り込み条件（JSで動的に生成） -->
+						<div id="filters">
+							<!-- ここに媒体・種別・対象・チャンネル・キーワードのセレクトボックスが入る予定 -->
+						</div>
+
+						<!-- 検索ボタン -->
+						<button type="submit">検索</button>
 					</form>
 				</section>
 
-				<!-- 検索結果の表示 -->
-				<section id="results">
-					<div id="search-result"></div>
-				</section>
-				<section>
-					<h2>🆕 最新コンテンツ</h2>
-					<ul id="latest-list" class="mini-posts"></ul>
-				</section>
+
+				<!-- 検索絞り込み -->
+				<div id="filters">
+					<select id="filter-種別">
+						<option value="">すべての種別</option>
+					</select>
+					<select id="filter-媒体">
+						<option value="">すべての媒体</option>
+					</select>
+					<select id="filter-チャンネル">
+						<option value="">すべてのチャンネル</option>
+					</select>
+					<select id="filter-対象">
+						<option value="">すべての対象</option>
+					</select>
+				</div>
+
+				<!-- 検索結果 -->
+				<div id="search-results"></div>
+				<button id="more-button" style="display: none;">続きを表示</button>
+
+
+
 				<script>
+					function normalize(str) {
+						return (str ?? "").toString().toLowerCase().replace(/\s+/g, "").replace(/[ー－−]/g, "-");
+					}
+
 					document.addEventListener("DOMContentLoaded", () => {
 						const params = new URLSearchParams(window.location.search);
 						const query = params.get("query");
-						const input = document.getElementById("searchInput");
-						if (input && query) input.value = decodeURIComponent(query);
+						const container = document.getElementById("search-results");
+						const infoBox = document.getElementById("search-info");
+						const moreBtn = document.getElementById("load-more");
 
-						if (query) {
-							document.getElementById("search-results").innerHTML = "<li>読み込み中...</li>";
-							fetch("https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec?mode=all")
-								.then(res => res.json())
-								.then(data => {
-									const results = data.filter(item =>
-										Object.values(item).some(val =>
-											val && val.toString().toLowerCase().includes(query.toLowerCase())
-										)
-									);
-									const list = document.getElementById("search-results");
-									list.innerHTML = "";
+						if (!container || !query) return;
 
-									if (results.length === 0) {
-										list.innerHTML = "<li>該当する記事が見つかりませんでした。</li>";
-										return;
-									}
+						let allResults = [];
+						let currentPage = 0;
+						let perPage = 10;
 
-									results.forEach(article => {
-										const li = document.createElement("li");
-										const a = document.createElement("a");
-										a.href = article.URL;
-										a.className = "mini-post";
-										a.innerHTML = `
-             							 <header>
-                							<h3>${article.タイトル}</h3>
-                							<time class="published">${article.公開日}</time>
-              							</header>
-            							`;
-										li.appendChild(a);
-										list.appendChild(li);
-									});
-								});
+						// 初期表示
+						container.innerHTML = "<li>検索中...</li>";
+
+						fetch("https://script.google.com/macros/s/AKfycbxFblthbQMXLruzVhZAtljX_w1JP8rDxu8B-vv5G0JVeg523LQeFFG1hzG-GC9-UG9miw/exec?mode=all_combined")
+							.then(res => res.json())
+							.then(data => {
+								const searchableFields = ["タイトル", "種別", "媒体", "チャンネル", "対象", "要約", "キーワード"];
+
+								allResults = data.filter(item =>
+									searchableFields.some(field =>
+										normalize(item[field]).includes(normalize(query))
+									)
+								);
+
+
+
+								if (allResults.length === 0) {
+									container.innerHTML = "<li>該当する記事が見つかりませんでした。</li>";
+									if (infoBox) infoBox.textContent = "";
+									return;
+								}
+
+								container.innerHTML = "";
+
+								if (infoBox) {
+									infoBox.textContent = allResults.length > 100
+										? `🔍 ${allResults.length}件以上の検索結果が見つかりました`
+										: `🔍 ${allResults.length}件の検索結果が見つかりました`;
+								}
+
+								perPage = allResults.length;
+
+								renderNext();
+
+								if (moreBtn) {
+									moreBtn.style.display = (allResults.length > perPage) ? "block" : "none";
+									moreBtn.addEventListener("click", renderNext);
+								}
+							})
+							.catch(err => {
+								console.error("❌ 検索失敗:", err);
+								container.innerHTML = "<li>検索に失敗しました。</li>";
+							});
+
+						function renderNext() {
+							const nextItems = allResults.slice(currentPage * perPage, (currentPage + 1) * perPage);
+							nextItems.forEach(item => {
+								const card = renderArticleCard(item);
+								container.appendChild(card);
+
+							});
+
+							currentPage++;
+							if (currentPage * perPage >= allResults.length) {
+								if (moreBtn) moreBtn.style.display = "none";
+							}
 						}
 					});
+
 				</script>
 
+				<!-- 検索結果 
+<section>
+  <h2>🔍 検索結果</h2>
+  <ul id="search-results" class="mini-posts"></ul>
+
+
+    <h2>🔍 検索結果</h2>
+ <ul id="search-result" class="mini-posts"></ul>
+    
+  </ul>
+</section>
+-->
+
+				<!-- 🔍 
+<section>
+
+
+<input type="text" name="query" id="searchInput" placeholder="検索キーワード" />
+
+<ul id="search-result" class="mini-posts"></ul>
+
+
+</section>検索結果 -->
+
+				<!-- 🆕 最新コンテンツ -->
+				<section>
+					<h2>🆕 最新コンテンツ</h2>
+					<ul id="latest-list" class="mini-posts">
+						<!-- JSでここにliを追加 -->
+					</ul>
+				</section>
+
+
+				<!-- Section
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("query");
+    const input = document.getElementById("searchInput");
+    if (input && query) input.value = decodeURIComponent(query);
+
+    if (query) {
+      const list = document.getElementById("search-result");
+      list.innerHTML = "<li>読み込み中...</li>";
+      
+      fetch("https://script.google.com/macros/s/AKfycbxFblthbQMXLruzVhZAtljX_w1JP8rDxu8B-vv5G0JVeg523LQeFFG1hzG-GC9-UG9miw/exec?mode=all")
+        .then(res => res.json())
+        .then(data => {
+          const results = data.filter(item =>
+            Object.values(item).some(val =>
+              val && val.toString().toLowerCase().includes(query.toLowerCase())
+            )
+          );
+
+          list.innerHTML = "";
+
+          if (results.length === 0) {
+            list.innerHTML = "<li>該当する記事が見つかりませんでした。</li>";
+            return;
+          }
+
+          results.forEach(article => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = article.URL;
+            a.className = "mini-post";
+            a.innerHTML = `
+              <header>
+                <h3>${article.タイトル}</h3>
+                <time class="published">${article.公開日}</time>
+              </header>
+            `;
+            li.appendChild(a);
+            list.appendChild(li);
+          });
+        })
+        .catch(error => {
+          list.innerHTML = `<li>検索中にエラーが発生しました。</li>`;
+          console.error("検索エラー:", error);
+        });
+    }
+  });
+</script>
+-->
+
+				<!-- Section
 				<section>
 					<h2>🆕 最新コンテンツ</h2>
 					<ul id="latest-list" class="mini-posts"></ul>
 				</section>
+ -->
 
 				<!-- Section -->
 				<section>

@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", async () => {
     // === 関連記事の動的読み込み処理 (テンプレ２.htmlにあったもの) ===
-    const relatedUrl = "https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec?mode=select20";
+    const relatedUrl = "https://script.google.com/macros/s/AKfycbxFblthbQMXLruzVhZAtljX_w1JP8rDxu8B-vv5G0JVeg523LQeFFG1hzG-GC9-UG9miw/exec?mode=select20";
     const relatedContainer = document.querySelector(".related .recommend-list");
 
     if (relatedContainer) {
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // === 最新コンテンツの動的読み込み処理 (index.htmlにあったもの) ===
-    const latestUrl = "https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec?mode=latest";
+    const latestUrl = "https://script.google.com/macros/s/AKfycbxFblthbQMXLruzVhZAtljX_w1JP8rDxu8B-vv5G0JVeg523LQeFFG1hzG-GC9-UG9miw/exec?mode=latest";
     const latestContainer = document.getElementById("latest-list");
 
     if (latestContainer) {

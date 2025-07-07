@@ -308,7 +308,7 @@
 				</section>
 				<script>
 					document.addEventListener("DOMContentLoaded", async () => {
-						const url = "https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec?mode=select20";
+						const url = "https://script.google.com/macros/s/AKfycbxFblthbQMXLruzVhZAtljX_w1JP8rDxu8B-vv5G0JVeg523LQeFFG1hzG-GC9-UG9miw/exec?mode=select20";
 						const container = document.querySelector(".related .recommend-list");
 
 						if (!container) return;
@@ -380,25 +380,11 @@
 			<div class="inner">
 
 				<!-- Search -->
-				<section id="search" class="alt">
-					<form method="post" action="#">
-						<input type="text" name="query" id="query" placeholder="Search" />
-					</form>
-				</section>
-				<script>
-					document.addEventListener("DOMContentLoaded", () => {
-						const form = document.querySelector('#search form');
-						const input = document.getElementById('query');
-
-						form.addEventListener('submit', function (e) {
-							e.preventDefault();
-							const q = input.value.trim();
-							if (q) {
-								location.href = `/articles/search.html?q=${encodeURIComponent(q)}`;
-							}
-						});
-					});
-				</script>
+<section id="search" class="alt">
+  <form action="/articles/search.html" method="GET">
+    <input type="text" name="query" placeholder="検索キーワード" />
+  </form>
+</section>
 
 
 				<!-- Menu -->

@@ -1,13 +1,13 @@
 // ✅ GASの汎用取得関数（URLは自分のWebアプリURLに置換！）
 function fetchJson(mode = "weekly", type = null) {
-    const base = "https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec"; // ← URL差し替え必要
+    const base = "https://script.google.com/macros/s/AKfycbxFblthbQMXLruzVhZAtljX_w1JP8rDxu8B-vv5G0JVeg523LQeFFG1hzG-GC9-UG9miw/exec"; // ← URL差し替え必要
     const url = `${base}?mode=${mode}` + (type ? `&type=${type}` : "");
     return fetch(url).then(res => res.json());
 }
 
 // ✅ ランダム記事表示（ローディング演出＋テンプレCSSでフェード風に）
 function loadRandomArticles(mode = "latest", type = null, count = 3, containerId = "latest-list") {
-    const url = `https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec?mode=${mode}` + (type ? `&type=${type}` : "");
+    const url = `https://script.google.com/macros/s/AKfycbxFblthbQMXLruzVhZAtljX_w1JP8rDxu8B-vv5G0JVeg523LQeFFG1hzG-GC9-UG9miw/exec?mode=${mode}` + (type ? `&type=${type}` : "");
 
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -56,57 +56,6 @@ function loadRandomArticles(mode = "latest", type = null, count = 3, containerId
         });
 }
 
-// ✅ search.html 専用：本気検索処理（クエリ→all.json→フィルタ→表示）
-function runSearchPage() {
-    const container = document.getElementById("search-result");
-    if (!container) return;
-
-    // 検索語取得
-    const query = new URLSearchParams(window.location.search).get("query");
-    if (!query || query.trim() === "") {
-        container.innerHTML = `<p class="loading">検索ワードが指定されていません。</p>`;
-        return;
-    }
-
-    // ローディング演出
-    container.innerHTML = `<p class="loading">「${query}」の検索結果を取得中…</p>`;
-
-    // GASから all.json を取得
-    const base = "https://script.google.com/macros/s/AKfycbz2Qro8GMl3RTOrcJoFq0Wy_6PrnLLoZfo1zTqWnJFjToYUE-ybb7cLMzRuctuWG4mu/exec"; // ←自分のURLに置換
-    fetch(`${base}?mode=all`)
-        .then(res => res.json())
-        .then(data => {
-            // フィルタ（タイトル・キーワード・要約 に query を含む）
-            const result = data.filter(item =>
-                (item.タイトル && item.タイトル.includes(query)) ||
-                (item.キーワード && item.キーワード.includes(query)) ||
-                (item.要約 && item.要約.includes(query))
-            );
-
-            if (result.length === 0) {
-                container.innerHTML = `<p class="loading">「${query}」に一致する記事は見つかりませんでした。</p>`;
-                return;
-            }
-
-            // 検索結果を表示（テンプレ内CSS活用）
-            container.innerHTML = "";
-            result.forEach(item => {
-                const div = document.createElement("div");
-                div.className = "box transition"; // ← テンプレ内クラス
-                div.style.opacity = 0;
-
-                div.innerHTML = `
-          <h3><a href="${item.URL}" target="_blank">${item.タイトル}</a></h3>
-          <p>${item.要約?.slice(0, 100) || "（要約なし）"}…</p>
-        `;
-
-                container.appendChild(div);
-                setTimeout(() => {
-                    div.style.opacity = 1;
-                }, 50);
-            });
-        });
-}
 // ✅ LINE登録ボタンのクリックを gtag に送信（全ページ共通で動作）
 document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll('a[href="https://lin.ee/7teX4nMG"]');
@@ -132,24 +81,65 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+// ✅ LINEスタンプボタンのクリックを gtag に送信（全ページ共通で動作）
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll('a[href="https://store.line.me/stickershop/product/30861516/ja"]');
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      let label = "スタンプ不明";
+
+      // ALTテキスト or テキストでラベルを決定
+      const img = link.querySelector("img");
+      if (img && img.alt) {
+        label = img.alt;
+      } else if (link.textContent.trim() !== "") {
+        label = link.textContent.trim();
+      }
+
+      // GA送信（gtag）
+      if (typeof gtag === "function") {
+        gtag("event", "line_stamp_cta", {
+          event_category: "cta",
+          event_label: `LINEスタンプ（${label}）`
+        });
+      }
+    });
+  });
+});
+
 // ✅ 汎用：URLパラメータを取得（例：getParam("query")）
 function getParam(name) {
     return new URLSearchParams(window.location.search).get(name);
 }
 
-// ✅ 汎用：記事カードHTML生成（必要なら今後共通化できる）
 function renderArticleCard(item) {
-    const div = document.createElement("div");
-    div.className = "box transition";
-    div.style.opacity = 0;
+  const div = document.createElement("div");
+  div.className = "box transition";
+  //div.style.opacity = 0;
 
-    div.innerHTML = `
+  div.innerHTML = `
     <h3><a href="${item.URL}" target="_blank">${item.タイトル}</a></h3>
-    <p>${item.要約?.slice(0, 100) || "（要約なし）"}…</p>
+    <p><strong>ID:</strong> ${item.ID}</p>
+    <p><strong>種別:</strong> ${item.種別}　<strong>媒体:</strong> ${item.媒体}</p>
+    <p><strong>チャンネル:</strong> ${item.チャンネル}　<strong>対象:</strong> ${item.対象}</p>
+    <p><strong>公開日:</strong> ${formatDate(item.公開日)}</p>
+    <p><strong>要約:</strong> ${item.要約 || "（要約なし）"}</p>
+    <p><strong>キーワード:</strong> ${item.キーワード || "（なし）"}</p>
   `;
 
-    return div;
+  return div;
 }
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
+
 // custom.js の末尾に追加
 window.addEventListener("DOMContentLoaded", () => {
     // ページごとに表示すべきモードを切り替える
@@ -168,22 +158,4 @@ window.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("self-list")) {
         loadRandomArticles("weekly", "self", 3, "self-list");
     }
-});
-// サイドバー検索フォームの送信処理をJSで制御（クロスブラウザ対応）
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector('#search form');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const keyword = form.querySelector('input[name="query"]').value.trim();
-      if (keyword !== "") {
-        window.location.href = `/articles/search.html?query=${encodeURIComponent(keyword)}`;
-      }
-    });
-  }
-});
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.getElementById("search-result")) {
-    runSearchPage();
-  }
 });
