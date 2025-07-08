@@ -9,3 +9,6 @@
 
 /*.woff2
   Cache-Control: public, max-age=2592000
+
+/*
+  X-Test-Header: Hello-Takakun
