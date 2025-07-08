@@ -27,7 +27,7 @@
 	<!-- ▼ SNSシェア用OGP設定 -->
 	<meta property="og:title" content="シルテラ｜教育と心理の再現知メディア" />
 	<meta property="og:description" content="学習・不登校・発達・スマホ依存…すべての教育の悩みに“脳と心”から答える。元教員の知見で届ける知識ラボ。" />
-	<meta property="og:image" content="https://shirutera.com/images/habit.png" />
+	<meta property="og:image" content="https://shirutera.com/images/habit.webp" />
 	<meta property="og:url" content="https://shirutera.com/articles/habit.html" />
 	<meta property="og:site_name" content="Shirutera" />
 	<meta property="og:type" content="article" />
@@ -43,8 +43,13 @@
 	<link rel="icon" type="image/png" href="/favicon-32.png" />
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 	<!-- ▼ フォントとCSS読み込み -->
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" />
+	<!-- ▼ フォントとCSS読み込み
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" /> -->
 	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="preload" href="/css/fontawesome-all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript>
+		<link rel="stylesheet" href="/css/fontawesome-all.min.css">
+	</noscript>
 	<!-- ▼ 構造化データ：WebSite情報 -->
 	<script type="application/ld+json">
 		{
@@ -92,7 +97,7 @@
 				<header id="header">
 					<h1 id="logo">
 						<a href="index.html">
-							<img src="images/logo-min.svg" alt="Shiruteraロゴ" width="120" height="30">
+							<img src="/images/logo-min.svg" alt="Shiruteraロゴ" width="120" height="30">
 						</a>
 					</h1>
 
@@ -177,7 +182,7 @@
 						</div>
 					</div>
 					<span class="image object">
-						<img src="images/shiruteratop.png" alt="Shiruteraのイメージ" />
+						<img src="/images/shiruteratop.webp" alt="Shiruteraのイメージ" />
 					</span>
 				</section>
 
@@ -375,7 +380,7 @@
 					<div class="posts">
 						<!--
 						<article>
-							<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
+							<a href="#" class="image"><img src="/images/pic06.jpg" alt="" /></a>
 							<h3>Amet varius aliquam</h3>
 							<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam
 								facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
@@ -385,7 +390,7 @@
 						</article>
 					-->
 						<article>
-							<a href="/articles/trigger/index.html" class="image"><img src="images/trigger.png"
+							<a href="/articles/trigger/index.html" class="image"><img src="/images/trigger.webp"
 									alt="「トリガーーープロンプトは残響だった。」のイメージ画像" /></a>
 							<h3>「AIで書いた作文って、ズルなの？」──小学5年生の少女が問うた、あの日。</h3>
 							<p>作文の発表直前、「中止」の一言が、すべてを変えた。<br>
@@ -395,7 +400,7 @@
 							</ul>
 						</article>
 						<article>
-							<a href="/articles/notehub.html" class="image"><img src="images/notehub.png" alt="" /></a>
+							<a href="/articles/notehub.html" class="image"><img src="/images/notehub.webp" alt="" /></a>
 							<h3>あなたのnote、もっと届いてほしいから──note読みあい企画、始めました📘</h3>
 							<p>「せっかく書いたのに、読まれない…」<br>
 								そんな悩み、ありませんか？</p>
@@ -409,7 +414,7 @@
 						</article>
 
 						<article>
-							<a href="/articles/ailearning.html" class="image"><img src="images/aigakusyu.png"
+							<a href="/articles/ailearning.html" class="image"><img src="/images/aigakusyu.webp"
 									alt="AIで英語学習" /></a>
 							<h3>ChatGPTは英語学習をどう変えるのか？</h3>
 							<p>ChatGPTの音声対話機能は、英語を“話す”練習の相手として注目されています。
@@ -420,7 +425,7 @@
 							</ul>
 						</article>
 						<article>
-							<a href="/articles/school_refusal.html" class="image"><img src="images/futoukou.png"
+							<a href="/articles/school_refusal.html" class="image"><img src="/images/futoukou.webp"
 									alt="不登校はサボリじゃない" /></a>
 							<h3>不登校は”甘え”じゃない――脳・心・社会から考える</h3>
 							<p>不登校は「サボり」でも「逃げ」でもありません。 本記事では、脳・心理・社会の観点から「なぜ休むことが必要なのか」を解きほぐし、
@@ -432,7 +437,7 @@
 							</ul>
 						</article>
 						<article>
-							<a href="/articles/private-sector-principal.html" class="image"><img src="images/minkan.png"
+							<a href="/articles/private-sector-principal.html" class="image"><img src="/images/minkan.webp"
 									alt="民間校長の危うさ" /></a>
 							<h3>【教育の闇】民間校長はいじめ対応できるのか？</h3>
 							<p>「民間校長」が教育現場に本当に必要なのか？
@@ -444,7 +449,7 @@
 							</ul>
 						</article>
 						<article>
-							<a href="/articles/start.html" class="image"><img src="/images/start.png"
+							<a href="/articles/start.html" class="image"><img src="/images/start.webp"
 									alt="SFマッチの研究スタート" /></a>
 							<h3>思考と暮らしを“実験”する場所──SFマッチ、はじめます</h3>
 							<p>SFマッチは、ちょっと未来っぽい暮らしを“実験”します。
@@ -457,7 +462,7 @@
 						</article>
 
 						<article>
-							<a href="articles/stamp.html" class="image"><img src="images/stamp.png"
+							<a href="articles/stamp.html" class="image"><img src="/images/stamp.webp"
 									alt="LINEスタンプ紹介" /></a>
 							<h3>マッチくんのやさしい返事スタンプ、できました。</h3>
 							<p>Shirutera――シルテラのマスコットキャラ、マッチくんのLINEスタンプはこちら。
@@ -541,11 +546,11 @@
 			<div class="inner">
 
 				<!-- Search -->
-<section id="search" class="alt">
-  <form action="/articles/search.html" method="GET">
-    <input type="text" name="query" placeholder="検索キーワード" />
-  </form>
-</section>
+				<section id="search" class="alt">
+					<form action="/articles/search.html" method="GET">
+						<input type="text" name="query" placeholder="検索キーワード" />
+					</form>
+				</section>
 
 				<!-- Menu -->
 				<nav id="menu">
@@ -704,9 +709,9 @@
 	<script src="/assets/js/breakpoints.min.js"></script>
 	<script src="/assets/js/util.js"></script>
 	<script src="/assets/js/main.js"></script>
-	
+
 	<script src="/assets/js/custom.js"></script>
-	 
+
 </body>
 
 </html>
