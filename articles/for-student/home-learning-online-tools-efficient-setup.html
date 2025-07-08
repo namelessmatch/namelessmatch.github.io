@@ -37,7 +37,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<!-- ▼ フォントとCSS読み込み
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" /> -->
-	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="preload" href="/assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
 
 	<!-- ✅ 第2弾：SEO補助・Twitterカード・ファビコン -->
 	<link rel="canonical"
@@ -802,12 +803,12 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="/assets/js/jquery.min.js"></script>
-	<script src="/assets/js/browser.min.js"></script>
-	<script src="/assets/js/breakpoints.min.js"></script>
-	<script src="/assets/js/util.js"></script>
-	<script src="/assets/js/main.js"></script>
-	<script src="/assets/js/custom.js"></script>
+	<script src="/assets/js/jquery.min.js" defer></script>
+	<script src="/assets/js/browser.min.js" defer></script>
+	<script src="/assets/js/breakpoints.min.js" defer></script>
+	<script src="/assets/js/util.js" defer></script>
+	<script src="/assets/js/main.js" defer></script>
+	<script src="/assets/js/custom.js" defer></script>
 </body>
 
 </html>

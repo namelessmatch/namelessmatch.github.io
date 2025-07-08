@@ -52,7 +52,8 @@
 	<!-- ▼ フォントとCSS読み込み -->
 	<!-- ▼ フォントとCSS読み込み
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" /> -->
-	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="preload" href="/assets/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/assets/css/main.css"></noscript>
 
 	<!-- ▼ 構造化データ：WebSite情報（SearchAction付き） -->
 	<script type="application/ld+json">
@@ -726,12 +727,12 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="/assets/js/jquery.min.js"></script>
-	<script src="/assets/js/browser.min.js"></script>
-	<script src="/assets/js/breakpoints.min.js"></script>
-	<script src="/assets/js/util.js"></script>
-	<script src="/assets/js/main.js"></script>
-	<script src="/assets/js/custom.js"></script>
+	<script src="/assets/js/jquery.min.js" defer></script>
+	<script src="/assets/js/browser.min.js" defer></script>
+	<script src="/assets/js/breakpoints.min.js" defer></script>
+	<script src="/assets/js/util.js" defer></script>
+	<script src="/assets/js/main.js" defer></script>
+	<script src="/assets/js/custom.js" defer></script>
 </body>
 
 </html>
