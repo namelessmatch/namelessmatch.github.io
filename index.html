@@ -7,7 +7,19 @@
 <html lang="ja">
 
 <head>
-	<!-- Google tag (gtag.js) -->
+	<!-- === GTM START === -->
+	<script>(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-T9ND425J');</script>
+	<!-- === GTM END === -->
+
+
+	<!-- Google tag (gtag.js) 
 	<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6KMB9LVSCJ"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -15,7 +27,7 @@
 		gtag('js', new Date());
 
 		gtag('config', 'G-6KMB9LVSCJ');
-	</script>
+	</script> -->
 
 	<!-- ▼ 基本設定 -->
 	<meta charset="utf-8" />
@@ -53,35 +65,98 @@
 	<noscript>
 		<link rel="stylesheet" href="/css/fontawesome-all.min.css">
 	</noscript>
-	<!-- ▼ 構造化データ：WebSite情報 -->
-	<script type="application/ld+json">
-		{
- 	 		"@context": "https://schema.org",
- 	 		"@type": "WebSite",
- 	 		"name": "Shirutera",
- 	 		"url": "https://shirutera.com/"
-		}
-	</script>
 
-	<!-- ▼ 構造化データ：パンくずリスト -->
+	<!-- ▼ 構造化データ：WebSite -->
 	<script type="application/ld+json">
-    	{
-        	"@context": "https://schema.org",
-        	"@type": "BreadcrumbList",
-        	"itemListElement": [
-            	{
-                	"@type": "ListItem",
-               		"position": 1,
-                	"name": "ホーム",
-                	"item": "https://shirutera.com/" // index.htmlではなく/で終わるのが一般的
-            	}
-        	]
-    	}
-	</script>
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://shirutera.com/index.html#website",
+  "name": "Shirutera",
+  "url": "https://shirutera.com/index.html",
+  "inLanguage": "ja-JP",
+  "publisher": {
+    "@id": "https://shirutera.com/index.html#organization"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://shirutera.com/articles/search.html?query={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+	<!-- ▼ 構造化データ：Organization -->
+	<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://shirutera.com/index.html#organization",
+  "name": "Shirutera",
+  "url": "https://shirutera.com/index.html",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://shirutera.com/favicon-32.png"
+  },
+  "sameAs": [
+    "https://x.com/nameless_match_",
+    "https://www.youtube.com/channel/UCyQQkGh3A6Kcm6WgT6KKYIw",
+    "https://www.instagram.com/nameless.match/",
+    "https://note.com/nameless_match",
+    "https://www.tiktok.com/@nameless.match"
+  ]
+}
+</script>
+
+	<!-- ▼ 構造化データ：WebPage（トップページ） -->
+	<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://shirutera.com/index.html#webpage",
+  "url": "https://shirutera.com/index.html",
+  "name": "Shirutera｜知るを照らす場所",
+  "description": "Shiruteraは、元教員が運営する教育・子育て・心理を扱うメディアです。脳科学・教育心理・現場経験をもとに、学びと心の課題に科学的に向き合います。",
+  "inLanguage": "ja-JP",
+  "isPartOf": {
+    "@id": "https://shirutera.com/index.html#website"
+  },
+  "about": {
+    "@id": "https://shirutera.com/index.html#organization"
+  },
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://shirutera.com/images/index.webp"
+  }
+}
+</script>
+
+	<!-- ▼ 構造化データ：パンくずリスト（トップページ） -->
+	<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ホーム",
+      "item": "https://shirutera.com/index.html"
+    }
+  ]
+}
+</script>
+
+
 
 </head>
 
 <body class="is-preload">
+<!-- === GTM NOSCRIPT START === -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9ND425J"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- === GTM NOSCRIPT END === -->
+
 
 	<!-- Wrapper -->
 	<div id="wrapper">
